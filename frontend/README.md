@@ -170,7 +170,7 @@ Design system (Tailwind + globals.css): `section-inner`, `section-block`, `btn-p
 
 ## Production and deployment
 
-- **Vercel**: Set root directory to `frontend` (or use root `vercel.json`). Set `NEXT_PUBLIC_API_BASE_URL` to the production backend URL (e.g. `https://your-api.onrender.com/api/v1`).
+- **Vercel**: In project settings set **Root Directory** to `frontend`. Set `NEXT_PUBLIC_API_BASE_URL` to the production backend URL (e.g. `https://your-api.onrender.com/api/v1`).
 - **Docker**: Use root `docker-compose.yml` and `frontend/Dockerfile`. Build uses standalone output; run with `node frontend/server.js`. Pass `NEXT_PUBLIC_API_BASE_URL` as build-arg if needed.
 - **Assets**: Landing page expects images under `public/images/` (e.g. for ImageCarousel) and video under `public/video/`. Copy from repo root `assets/` if not already in `public/`.
 

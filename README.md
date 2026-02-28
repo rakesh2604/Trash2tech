@@ -79,7 +79,7 @@ E-Waste/
 ├── Docs/                    # Production deployment, architecture docs
 ├── docker-compose.yml       # Postgres, Redis, API, Web
 ├── render.yaml              # Render blueprint (backend + Postgres)
-├── vercel.json              # Vercel config (rootDirectory: frontend)
+├── vercel.json              # Vercel config; set Root Directory to frontend in dashboard
 ├── package.json             # Workspace root scripts
 └── README.md                # This file
 ```
@@ -291,7 +291,7 @@ Base path: **`/api/v1`**. All endpoints except health and auth require `Authoriz
 ## Deployment
 
 - **Backend**: Deploy to **Render** (Postgres, web service). See `render.yaml` and [Docs/PRODUCTION_DEPLOYMENT.md](Docs/PRODUCTION_DEPLOYMENT.md).
-- **Frontend**: Deploy to **Vercel** (root directory: `frontend`). Set `NEXT_PUBLIC_API_BASE_URL` to the backend API URL.
+- **Frontend**: Deploy to **Vercel**; in project settings set **Root Directory** to `frontend`. Set `NEXT_PUBLIC_API_BASE_URL` to the backend API URL.
 - **Docker**: `docker compose up -d --build` (Postgres, Redis, API, Web). See `docker-compose.yml`.
 
 Details, env tables, and step-by-step instructions: **[Docs/PRODUCTION_DEPLOYMENT.md](Docs/PRODUCTION_DEPLOYMENT.md)**.

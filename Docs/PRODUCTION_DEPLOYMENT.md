@@ -62,7 +62,7 @@ Compliance-grade deployment for **Backend (Render)** and **Frontend (Vercel)**.
 | API URL | From `NEXT_PUBLIC_API_BASE_URL` |
 | No hardcoded localhost in user-facing messages | Yes (login/signup errors generic) |
 | .env.example | Created |
-| vercel.json | Root directory set to `frontend` |
+| vercel.json | Build config; set Root Directory to `frontend` in Vercel dashboard |
 
 ### Frontend env vars (see `frontend/.env.example`)
 
@@ -88,7 +88,7 @@ Compliance-grade deployment for **Backend (Render)** and **Frontend (Vercel)**.
 
 ### Frontend (Vercel)
 
-1. **Connect repo** to Vercel; set **Root Directory** to `frontend` (or use `vercel.json` which sets `rootDirectory: "frontend"`).
+1. **Connect repo** to Vercel; in Project Settings set **Root Directory** to `frontend`.
 2. **Environment variables** (Vercel project → Settings → Environment Variables):
    - `NEXT_PUBLIC_API_BASE_URL` = `https://your-ewaste-api.onrender.com/api/v1`
    - Optionally: `NEXT_PUBLIC_WHATSAPP_NUMBER`, `NEXT_PUBLIC_MISSED_CALL_NUMBER`.
