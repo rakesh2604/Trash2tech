@@ -25,7 +25,15 @@ export type ApiConfig = {
 };
 
 function getBaseUrl(): string {
-  return process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3001/api/v1';
+  const raw =
+    process.env.NEXT_PUBLIC_API_BASE_URL ||
+    process.env.NEXT_PUBLIC_API_URL ||
+    'http://localhost:3001/api/v1';
+  const base = raw.replace(/\/$/, '');
+  if (!base.includes('/api/v1') && !base.includes('/api/')) {
+    return `${base}/api/v1`;
+  }
+  return base;
 }
 
 /** Resolve token: explicit token, or (client-only) localStorage. */
