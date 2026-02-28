@@ -15,7 +15,7 @@ function setAuthCookie(token: string) {
 function getErrorMessage(err: unknown): string {
   const msg = err instanceof Error ? err.message : String(err);
   if (msg === 'Failed to fetch' || /network|connection refused|ERR_CONNECTION_REFUSED/i.test(msg)) {
-    return 'Cannot reach the API. Check that the backend is running and NEXT_PUBLIC_API_BASE_URL is set correctly.';
+    return 'Cannot reach the API. Start the backend first: open a terminal, run cd backend && npm run dev (it should listen on port 3001). Then refresh this page.';
   }
   if (msg.includes('404')) {
     return 'API not found. Check that the backend URL is correct.';
