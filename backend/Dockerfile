@@ -12,7 +12,7 @@ RUN npm install -g npm@10
 FROM base AS deps
 RUN npm ci --ignore-scripts 2>/dev/null || npm install --ignore-scripts
 
-FROM base AS build
+FROM deps AS build
 COPY . .
 # Use standalone tsconfig so build works without monorepo tsconfig.base.json
 COPY tsconfig.docker.json ./tsconfig.json
