@@ -27,3 +27,14 @@ export function validateDatabaseEnv(): void {
     );
   }
 }
+
+/** Returns true if DATABASE_URL or all DB_* vars are set (for optional migrations at startup). */
+export function hasDatabaseEnv(): boolean {
+  const databaseUrl = process.env.DATABASE_URL;
+  if (databaseUrl && databaseUrl.trim() !== '') return true;
+  const required = ['DB_HOST', 'DB_PORT', 'DB_PASSWORD', 'DB_NAME'] as const;
+  const hasUser = ['DB_USER', 'DB_USERNAME'].some(
+    (k) => process.env[k] !== undefined && process.env[k] !== '',
+  );
+  return required.every((k) => process.env[k] !== undefined && process.env[k] !== '') && hasUser;
+}

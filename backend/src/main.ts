@@ -4,7 +4,7 @@ import helmet from 'helmet';
 import compression from 'compression';
 import { AppModule } from './app.module';
 import { DomainExceptionFilter } from './common/domain-exception.filter';
-import { validateDatabaseEnv } from './db/validate-env';
+import { validateDatabaseEnv, hasDatabaseEnv } from './db/validate-env';
 import AppDataSource from './typeorm-datasource';
 
 const RUN_MIGRATIONS = process.env.RUN_MIGRATIONS !== 'false';
@@ -27,16 +27,33 @@ function getCorsOrigin(): string | string[] | boolean {
 }
 
 async function bootstrap() {
-  if (RUN_MIGRATIONS) {
+  if (!hasDatabaseEnv()) {
+    // eslint-disable-next-line no-console
+    console.error(
+      'Database not configured. Set DATABASE_URL (or DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME) in Render Dashboard → Environment.',
+    );
+    process.exit(1);
+  }
+  const shouldRunMigrations = RUN_MIGRATIONS && hasDatabaseEnv();
+  if (shouldRunMigrations) {
     try {
       await runMigrations();
     } catch (err) {
-      const msg = err instanceof Error ? err.message : String(err);
+      const msg =
+        (err instanceof Error && err.message) || (typeof err === 'string' ? err : String(err));
+      const stack = err instanceof Error ? err.stack : undefined;
+      const detail = msg || (err && typeof err === 'object' ? JSON.stringify(err) : 'Unknown error');
       // eslint-disable-next-line no-console
-      console.error('Database startup failed:', msg);
-      if (/ECONNREFUSED|connect/i.test(msg)) {
+      console.error('Database startup failed:', detail);
+      if (stack) {
         // eslint-disable-next-line no-console
-        console.error('Ensure PostgreSQL is running and DATABASE_URL or DB_* in .env are correct.');
+        console.error(stack);
+      }
+      if (!msg || /ECONNREFUSED|connect|missing|required/i.test(detail)) {
+        // eslint-disable-next-line no-console
+        console.error(
+          'Set DATABASE_URL in Render Dashboard → Environment, or ensure PostgreSQL is reachable.',
+        );
       }
       process.exit(1);
     }
