@@ -18,5 +18,4 @@ This repository is structured as an npm workspace monorepo with separate apps fo
 - `npm run seed` to create demo hub, category, recycler, brand, and field-captain user.
 - `npm run dev` to start API and web apps together (API: 3001, Web: 3000).
 
-**Demo runbook:** See [DEMO.md](./DEMO.md) for step-by-step pickup → hub intake → lot → dispatch → recycler intake → EPR export.
 
