@@ -1,0 +1,42 @@
+# Render Blueprint — E-Waste Traceability API
+# https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: ewaste-api
+    runtime: node
+    region: singapore
+
+    buildCommand: npm install && npm run build
+    startCommand: npm run start:prod
+
+    rootDir: backend
+
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: RUN_MIGRATIONS
+        value: "true"
+      - key: PORT
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: ewaste-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CORS_ORIGIN
+        sync: false
+      - key: REDIS_URL
+        sync: false
+      - key: WHATSAPP_BSP_ACCESS_TOKEN
+        sync: false
+      - key: EXOTEL_API_KEY
+        sync: false
+
+    healthCheckPath: /api/v1/health
+
+databases:
+  - name: ewaste-db
+    databaseName: ewaste_mvp
+    plan: free
+    region: singapore

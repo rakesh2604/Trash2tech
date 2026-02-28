@@ -1,0 +1,81 @@
+# E-Waste Traceability — local dev / prod-like stack
+# Usage: docker compose pull && docker compose up -d
+#        Or build: docker compose up -d --build
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: ewaste_postgres
+    environment:
+      POSTGRES_USER: ewaste
+      POSTGRES_PASSWORD: ewaste_password
+      POSTGRES_DB: ewaste_mvp
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ewaste -d ewaste_mvp"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: ewaste_redis
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  api:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    image: ewaste-api:latest
+    container_name: ewaste_api
+    depends_on:
+      postgres: { condition: service_healthy }
+      redis: { condition: service_healthy }
+    environment:
+      NODE_ENV: production
+      PORT: 3001
+      DATABASE_URL: postgres://ewaste:ewaste_password@postgres:5432/ewaste_mvp
+      REDIS_URL: redis://redis:6379
+      REDIS_HOST: redis
+      REDIS_PORT: "6379"
+      JWT_SECRET: ${JWT_SECRET:-change-me-in-production-min-32-chars}
+      CORS_ORIGIN: ${CORS_ORIGIN:-http://localhost:3000}
+      RUN_MIGRATIONS: "true"
+    ports:
+      - "3001:3001"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3001/api/v1/health"]
+      interval: 30s
+      timeout: 5s
+      start_period: 15s
+      retries: 3
+
+  web:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+      args:
+        NEXT_PUBLIC_API_BASE_URL: http://localhost:3001/api/v1
+    image: ewaste-web:latest
+    container_name: ewaste_web
+    depends_on:
+      - api
+    environment:
+      NODE_ENV: production
+      NEXT_PUBLIC_API_BASE_URL: http://localhost:3001/api/v1
+    ports:
+      - "3000:3000"
+
+volumes:
+  postgres_data:
+

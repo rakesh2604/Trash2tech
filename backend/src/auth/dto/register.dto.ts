@@ -1,0 +1,20 @@
+import { IsEmail, IsEnum, IsString, MinLength } from 'class-validator';
+import { UserRole } from '../../entities/user.entity';
+
+export class RegisterDto {
+  @IsEmail()
+  email!: string;
+
+  @IsString()
+  @MinLength(8, { message: 'Password must be at least 8 characters' })
+  password!: string;
+
+  @IsString()
+  name!: string;
+
+  @IsEnum(UserRole)
+  role!: UserRole;
+
+  @IsString()
+  phone!: string;
+}
