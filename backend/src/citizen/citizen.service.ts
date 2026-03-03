@@ -33,13 +33,9 @@ function toSanitizedSellRequest(req: CitizenSellRequest): Record<string, unknown
       }
     : undefined;
   const camp = req.campaign;
-  const campaign = camp
-    ? { id: camp.id, name: camp.name, type: camp.type }
-    : undefined;
+  const campaign = camp ? { id: camp.id, name: camp.name, type: camp.type } : undefined;
   const pick = req.pickup;
-  const pickup = pick
-    ? { id: pick.id, pickupCode: pick.pickupCode }
-    : undefined;
+  const pickup = pick ? { id: pick.id, pickupCode: pick.pickupCode } : undefined;
   const items = (req.items || []).map((i) => {
     const cat = i.materialCategory;
     return {
@@ -52,9 +48,7 @@ function toSanitizedSellRequest(req: CitizenSellRequest): Record<string, unknown
       description: i.description ?? null,
     };
   });
-  const citizen = req.citizen
-    ? { name: req.citizen.name ?? null }
-    : undefined;
+  const citizen = req.citizen ? { name: req.citizen.name ?? null } : undefined;
   return {
     id: req.id,
     status: req.status,
@@ -62,8 +56,10 @@ function toSanitizedSellRequest(req: CitizenSellRequest): Record<string, unknown
     citizen,
     paymentAmountRs: req.paymentAmountRs ?? null,
     paymentCompletedAt: req.paymentCompletedAt != null ? String(req.paymentCompletedAt).slice(0, 24) : null,
-    preferredDateFrom: req.preferredDateFrom != null ? String(req.preferredDateFrom).slice(0, 10) : null,
-    preferredDateTo: req.preferredDateTo != null ? String(req.preferredDateTo).slice(0, 10) : null,
+    preferredDateFrom:
+      req.preferredDateFrom != null ? String(req.preferredDateFrom).slice(0, 10) : null,
+    preferredDateTo:
+      req.preferredDateTo != null ? String(req.preferredDateTo).slice(0, 10) : null,
     alternatePhone: req.alternatePhone ?? null,
     notes: req.notes ?? null,
     createdAt: req.createdAt != null ? String(req.createdAt) : null,
@@ -121,12 +117,14 @@ export class CitizenService {
 
   async listActiveCampaigns() {
     const now = new Date();
-    return await this.campaignRepo.find({
-      where: {
-        isActive: true,
-      },
-      order: { endAt: 'DESC' },
-    }).then((list) =>
+    return await this.campaignRepo
+      .find({
+        where: {
+          isActive: true,
+        },
+        order: { endAt: 'DESC' },
+      })
+      .then((list) =>
       list.filter((c) => new Date(c.startAt) <= now && new Date(c.endAt) >= now),
     );
   }

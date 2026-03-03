@@ -65,9 +65,13 @@ export class CitizenAdminController {
       return await this.citizenService.convertToPickup(id, dto.hubId, user.id);
     } catch (err) {
       if (err instanceof HttpException) throw err;
-      if (err instanceof DomainError)
-        throw new BadRequestException(err.message);
-      if (err && typeof err === 'object' && 'message' in err && typeof (err as Error).message === 'string') {
+      if (err instanceof DomainError) throw new BadRequestException(err.message);
+      if (
+        err &&
+        typeof err === 'object' &&
+        'message' in err &&
+        typeof (err as Error).message === 'string'
+      ) {
         const msg = (err as Error).message;
         if (/not found|invalid|must be OPEN|no items/i.test(msg))
           throw new BadRequestException(msg);

@@ -15,7 +15,10 @@ import { JwtStrategy } from './jwt.strategy';
     JwtModule.registerAsync({
       imports: [ConfigModule],
       useFactory: (config: ConfigService) => ({
-        secret: config.get<string>('JWT_SECRET') || config.get<string>('JWT_ACCESS_TOKEN_SECRET') || 'change-me-in-production',
+        secret:
+          config.get<string>('JWT_SECRET') ||
+          config.get<string>('JWT_ACCESS_TOKEN_SECRET') ||
+          'change-me-in-production',
         signOptions: {
           // JWT sign accepts '1d' string; Nest typings expect number | StringValue
           expiresIn: (config.get<string>('JWT_EXPIRES_IN') || '1d') as unknown as number,
