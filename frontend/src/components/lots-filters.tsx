@@ -35,21 +35,21 @@ export function LotsFilters(props: {
   return (
     <div className="flex flex-wrap items-center gap-4 mb-6">
       <div>
-        <label htmlFor="lot-filter-status" className="block text-xs font-medium text-slate-500 mb-1">Status</label>
-        <select id="lot-filter-status" className="input-base w-auto min-w-[180px]" value={status} onChange={(e) => update('status', e.target.value)}>
+        <label htmlFor="lot-filter-status" className="block text-xs font-medium text-white/70 mb-1">Status</label>
+        <select id="lot-filter-status" className="input-glass w-auto min-w-[180px]" value={status} onChange={(e) => update('status', e.target.value)}>
           {LOT_STATUSES.map((o) => <option key={o.value || '_'} value={o.value}>{o.label}</option>)}
         </select>
       </div>
       <div>
-        <label htmlFor="lot-filter-hub" className="block text-xs font-medium text-slate-500 mb-1">Hub</label>
-        <select id="lot-filter-hub" className="input-base w-auto min-w-[200px]" value={hubId} onChange={(e) => update('hubId', e.target.value)}>
+        <label htmlFor="lot-filter-hub" className="block text-xs font-medium text-white/70 mb-1">Hub</label>
+        <select id="lot-filter-hub" className="input-glass w-auto min-w-[200px]" value={hubId} onChange={(e) => update('hubId', e.target.value)}>
           <option value="">All hubs</option>
           {props.hubs.map((h) => <option key={h.id} value={h.id}>{h.name}</option>)}
         </select>
       </div>
       <div>
-        <label htmlFor="lot-filter-recycler" className="block text-xs font-medium text-slate-500 mb-1">Recycler</label>
-        <select id="lot-filter-recycler" className="input-base w-auto min-w-[200px]" value={recyclerId} onChange={(e) => update('recyclerId', e.target.value)}>
+        <label htmlFor="lot-filter-recycler" className="block text-xs font-medium text-white/70 mb-1">Recycler</label>
+        <select id="lot-filter-recycler" className="input-glass w-auto min-w-[200px]" value={recyclerId} onChange={(e) => update('recyclerId', e.target.value)}>
           <option value="">All recyclers</option>
           {props.recyclers.map((r) => <option key={r.id} value={r.id}>{r.name}</option>)}
         </select>

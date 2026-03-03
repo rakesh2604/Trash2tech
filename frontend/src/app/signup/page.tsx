@@ -2,11 +2,13 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import { PublicHeader } from '../../components/landing/PublicHeader';
 import { api, AUTH_TOKEN_KEY, getDashboardPathForRole } from '../../lib/api';
 import { SIGNUP_ROLES } from '../../lib/roles';
 
 const COOKIE_MAX_AGE_DAYS = 1;
+const spring = { type: 'spring' as const, stiffness: 120, damping: 18 };
 
 function setAuthCookie(token: string) {
   const maxAge = COOKIE_MAX_AGE_DAYS * 24 * 60 * 60;
@@ -75,20 +77,33 @@ export default function SignUpPage() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50">
+    <div className="min-h-screen flex flex-col bg-eco-gradient text-white">
+      <div
+        className="fixed inset-0 pointer-events-none"
+        aria-hidden
+        style={{
+          background: 'radial-gradient(ellipse 80% 50% at 50% 40%, rgba(34,197,94,0.12) 0%, transparent 60%)',
+        }}
+      />
       <PublicHeader />
-      <main id="main-content" className="flex-1 flex items-center justify-center px-4 py-12 sm:py-16" tabIndex={-1}>
-        <div className="w-full max-w-md">
-          <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
-            <h1 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+      <main id="main-content" className="relative flex-1 flex items-center justify-center px-4 py-12 sm:py-16" tabIndex={-1}>
+        <div className="w-full max-w-md mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={spring}
+            className="glass-card rounded-2xl p-10 shadow-[0_0_25px_rgba(34,197,94,0.15)]"
+          >
+            <div className="relative z-10">
+            <h1 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
               Create account
             </h1>
-            <p className="mt-2 text-slate-600">
+            <p className="mt-2 text-white/70">
               New accounts are typically created by your administrator. If you have an invite code or admin access, use this form.
             </p>
             <form onSubmit={handleSubmit} className="mt-8 space-y-5">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-slate-700">
+                <label htmlFor="name" className="block text-sm font-medium text-white/80">
                   Full name
                 </label>
                 <input
@@ -98,12 +113,12 @@ export default function SignUpPage() {
                   onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
                   required
                   autoComplete="name"
-                  className="input-base mt-1"
+                  className="input-glass mt-1"
                   placeholder="Your name"
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-slate-700">
+                <label htmlFor="email" className="block text-sm font-medium text-white/80">
                   Email
                 </label>
                 <input
@@ -113,12 +128,12 @@ export default function SignUpPage() {
                   onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
                   required
                   autoComplete="email"
-                  className="input-base mt-1"
+                  className="input-glass mt-1"
                   placeholder="you@example.com"
                 />
               </div>
               <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-slate-700">
+                <label htmlFor="phone" className="block text-sm font-medium text-white/80">
                   Phone
                 </label>
                 <input
@@ -128,19 +143,19 @@ export default function SignUpPage() {
                   onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
                   required
                   autoComplete="tel"
-                  className="input-base mt-1"
+                  className="input-glass mt-1"
                   placeholder="10-digit mobile"
                 />
               </div>
               <div>
-                <label htmlFor="role" className="block text-sm font-medium text-slate-700">
+                <label htmlFor="role" className="block text-sm font-medium text-white/80">
                   Role
                 </label>
                 <select
                   id="role"
                   value={form.role}
                   onChange={(e) => setForm((f) => ({ ...f, role: e.target.value }))}
-                  className="input-base mt-1"
+                  className="input-glass mt-1"
                 >
                   {SIGNUP_ROLES.map((r) => (
                     <option key={r.value} value={r.value}>{r.label}</option>
@@ -148,10 +163,10 @@ export default function SignUpPage() {
                 </select>
               </div>
               <div>
-                <label htmlFor="password" className="block text-sm font-medium text-slate-700">
+                <label htmlFor="password" className="block text-sm font-medium text-white/80">
                   Password (min 8 characters)
                 </label>
-                <div className="mt-1 flex rounded-lg border border-slate-300 bg-white focus-within:ring-1 focus-within:ring-brand focus-within:border-brand">
+                <div className="mt-1 flex rounded-xl border border-white/10 bg-white/5 focus-within:border-emerald-400 focus-within:ring-2 focus-within:ring-emerald-400/30 transition-all duration-200">
                   <input
                     id="password"
                     type={showPassword ? 'text' : 'password'}
@@ -160,13 +175,13 @@ export default function SignUpPage() {
                     required
                     minLength={8}
                     autoComplete="new-password"
-                    className="min-w-0 flex-1 rounded-lg border-0 bg-transparent px-3 py-2.5 text-slate-900 placeholder-slate-400 focus:outline-none"
+                    className="min-w-0 flex-1 rounded-xl border-0 bg-transparent px-3 py-2.5 text-white placeholder-white/40 focus:outline-none"
                     placeholder="••••••••"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword((v) => !v)}
-                    className="px-3 py-2 text-sm font-medium text-slate-500 hover:text-slate-700 focus:outline-none rounded-r-lg"
+                    className="px-3 py-2 text-sm font-medium text-white/60 hover:text-white/80 focus:outline-none rounded-r-xl focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-inset"
                     aria-label={showPassword ? 'Hide password' : 'Show password'}
                   >
                     {showPassword ? 'Hide' : 'Show'}
@@ -174,23 +189,24 @@ export default function SignUpPage() {
                 </div>
               </div>
               {error && (
-                <p className="text-sm text-red-700 bg-red-50 rounded-lg px-3 py-2 border border-red-100" role="alert">
+                <p className="text-sm text-red-300 bg-red-500/10 border border-red-500/30 rounded-xl px-3 py-2" role="alert">
                   {error}
                 </p>
               )}
-              <button type="submit" disabled={loading} className="btn-primary w-full py-3 text-base">
+              <button type="submit" disabled={loading} className="btn-glass-primary w-full py-3 text-base">
                 {loading ? 'Creating account…' : 'Create account'}
               </button>
             </form>
-            <p className="mt-6 text-center text-sm text-slate-600">
+            <p className="mt-6 text-center text-sm text-white/70">
               Already have an account?{' '}
-              <Link href="/login" className="font-medium text-brand hover:text-brand-light">
+              <Link href="/login" className="font-medium text-eco hover:underline focus-visible:outline focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B1220] rounded">
                 Sign in
               </Link>
             </p>
-          </div>
+            </div>
+          </motion.div>
           <p className="mt-6 text-center">
-            <Link href="/" className="text-sm text-slate-500 hover:text-slate-700 focus-visible:outline focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 rounded">
+            <Link href="/" className="text-sm text-white/70 hover:text-white focus-visible:outline focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B1220] rounded">
               ← Back to home
             </Link>
           </p>

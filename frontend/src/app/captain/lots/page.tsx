@@ -96,7 +96,7 @@ export default function CaptainLotsPage() {
     return (
       <AppShell title="E-waste Console">
         <h2 className="text-lg font-semibold mb-1">Create lot</h2>
-        <p className="text-sm text-slate-600">Loading options…</p>
+        <p className="text-sm text-white/70">Loading options…</p>
       </AppShell>
     );
   }
@@ -104,16 +104,16 @@ export default function CaptainLotsPage() {
   return (
     <AppShell title="E-waste Console">
       <h2 className="text-lg font-semibold mb-1">Create lot</h2>
-      <p className="text-sm text-slate-700 mb-6">
+      <p className="text-sm text-white/80 mb-6">
         Group hub intakes into a lot and link pickups for dispatch. Select a hub to see available intakes.
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-xl">
         <div>
-          <label className="block text-sm font-medium text-slate-700 mb-1">Hub *</label>
+          <label className="block text-sm font-medium text-white/80 mb-1">Hub *</label>
           <select
             required
-            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 focus:border-brand focus:ring-1 focus:ring-brand min-h-[44px]"
+            className="input-glass w-full min-h-[44px]"
             value={form.hubId}
             onChange={(e) => setForm((f) => ({ ...f, hubId: e.target.value }))}
           >
@@ -124,10 +124,10 @@ export default function CaptainLotsPage() {
           </select>
         </div>
         <div>
-          <label className="block text-sm font-medium text-slate-700 mb-1">Recycler *</label>
+          <label className="block text-sm font-medium text-white/80 mb-1">Recycler *</label>
           <select
             required
-            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 focus:border-brand focus:ring-1 focus:ring-brand min-h-[44px]"
+            className="input-glass w-full min-h-[44px]"
             value={form.recyclerId}
             onChange={(e) => setForm((f) => ({ ...f, recyclerId: e.target.value }))}
           >
@@ -138,10 +138,10 @@ export default function CaptainLotsPage() {
           </select>
         </div>
         <div>
-          <label className="block text-sm font-medium text-slate-700 mb-1">Material category *</label>
+          <label className="block text-sm font-medium text-white/80 mb-1">Material category *</label>
           <select
             required
-            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 focus:border-brand focus:ring-1 focus:ring-brand min-h-[44px]"
+            className="input-glass w-full min-h-[44px]"
             value={form.materialCategoryId}
             onChange={(e) => setForm((f) => ({ ...f, materialCategoryId: e.target.value }))}
           >
@@ -155,18 +155,18 @@ export default function CaptainLotsPage() {
 
       {form.hubId && (
         <div className="mt-6 max-w-xl">
-          <label className="block text-sm font-medium text-slate-700 mb-2">Hub intake records (select at least one) *</label>
+          <label className="block text-sm font-medium text-white/80 mb-2">Hub intake records (select at least one) *</label>
           {availableIntakes.length === 0 ? (
-            <p className="text-sm text-slate-600">No available intakes for this hub. Record hub intakes first.</p>
+            <p className="text-sm text-white/70">No available intakes for this hub. Record hub intakes first.</p>
           ) : (
-            <ul className="space-y-2 rounded-lg border border-slate-200 bg-slate-50 p-3 max-h-48 overflow-y-auto">
+            <ul className="space-y-2 rounded-xl border border-white/10 bg-white/5 p-3 max-h-48 overflow-y-auto">
               {availableIntakes.map((i) => (
                 <li key={i.id} className="flex items-center gap-3">
                   <input
                     type="checkbox"
                     checked={form.hubIntakeRecordIds.includes(i.id)}
                     onChange={() => toggleIntake(i.id)}
-                    className="rounded border-slate-600"
+                    className="rounded border-white/20"
                   />
                   <span className="text-sm text-slate-800">
                     {i.id.slice(0, 8)}… — {i.hubWeightKg} kg — {new Date(i.weighedAt).toLocaleString()}
@@ -181,7 +181,7 @@ export default function CaptainLotsPage() {
       <div className="mt-6">
         <button
           onClick={submit}
-          className="min-h-[44px] rounded-lg bg-brand px-4 py-2 text-sm font-medium text-white hover:bg-brand-light"
+          className="btn-glass-primary min-h-[44px] px-4 py-2 text-sm"
         >
           Create lot
         </button>

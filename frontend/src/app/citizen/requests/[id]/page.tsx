@@ -35,8 +35,8 @@ export default function CitizenRequestTraceabilityPage() {
   const token = typeof window !== 'undefined' ? localStorage.getItem('auth_token') : null;
   if (!token) return <LoginRequired />;
 
-  if (loading) return <AppShell title="Traceability"><div className="py-8 text-slate-600">Loading...</div></AppShell>;
-  if (error || !data) return <AppShell title="Traceability"><div className="py-8 text-red-700">{error || 'Not found'}</div></AppShell>;
+  if (loading) return <AppShell title="Traceability"><div className="py-8 text-white/70">Loading...</div></AppShell>;
+  if (error || !data) return <AppShell title="Traceability"><div className="py-8 text-red-300">{error || 'Not found'}</div></AppShell>;
 
   const { sellRequest, steps, tentativeDaysToRecycle, paymentAmountRs, paymentCompletedAt, pickupCode, hubName } = data;
 
@@ -44,27 +44,27 @@ export default function CitizenRequestTraceabilityPage() {
     <AppShell title="Traceability">
       <div className="space-y-6">
         <div>
-          <Link href="/citizen" className="text-sm text-brand hover:underline font-medium">← Back to dashboard</Link>
-          <h2 className="text-xl font-bold tracking-tight text-slate-900 mt-2">Digital traceability</h2>
-          <p className="text-slate-600 mt-1">
+          <Link href="/citizen" className="text-sm text-eco hover:underline font-medium">← Back to dashboard</Link>
+          <h2 className="text-xl font-bold tracking-tight text-white mt-2">Digital traceability</h2>
+          <p className="text-white/70 mt-1">
             Your e-waste is tracked from collection to recycler. Tentative time to reach recycle center: <strong>~{tentativeDaysToRecycle} days</strong>.
           </p>
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-4 space-y-2">
-          <p className="text-sm text-slate-600">
+        <div className="rounded-2xl glass-card p-4 space-y-2">
+          <p className="text-sm text-white/70">
             Request: <strong>{sellRequest.totalEstimatedKg} kg</strong> · Created {new Date(sellRequest.createdAt).toLocaleString()}
             {paymentAmountRs && (
-              <span className="ml-2 text-green-700">· ₹{paymentAmountRs} paid {paymentCompletedAt ? new Date(paymentCompletedAt).toLocaleDateString() : ''}</span>
+              <span className="ml-2 text-eco">· ₹{paymentAmountRs} paid {paymentCompletedAt ? new Date(paymentCompletedAt).toLocaleDateString() : ''}</span>
             )}
           </p>
           {sellRequest.items && sellRequest.items.length > 0 && (
-            <p className="text-xs text-slate-600">
+            <p className="text-xs text-white/70">
               Items: {sellRequest.items.map((i) => `${i.materialCategory?.code} ${i.estimatedWeightKg} kg${i.description ? ` (${i.description})` : ''}`).join('; ')}
             </p>
           )}
           {(pickupCode || hubName) && (
-            <p className="text-sm font-medium text-slate-800 mt-2">
+            <p className="text-sm font-medium text-white/90 mt-2">
               Pickup code: <strong>{pickupCode ?? '—'}</strong>
               {hubName && <> · Hub: <strong>{hubName}</strong></>}
             </p>
@@ -72,30 +72,30 @@ export default function CitizenRequestTraceabilityPage() {
         </div>
 
         <div className="space-y-2">
-          <h3 className="font-semibold text-slate-900">Status steps</h3>
+          <h3 className="font-semibold text-white">Status steps</h3>
           <ul className="space-y-2">
             {steps.filter((s) => s.stage !== 'TRACE').map((step, i) => (
               <li
                 key={i}
-                className={`flex items-center gap-3 rounded-lg border px-4 py-3 ${
-                  step.done ? 'border-green-200 bg-green-50/50' : 'border-slate-200 bg-white'
+                className={`flex items-center gap-3 rounded-xl border px-4 py-3 ${
+                  step.done ? 'border-eco/30 bg-eco/10' : 'border-white/10 bg-white/5'
                 }`}
               >
                 <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-medium ${
-                  step.done ? 'bg-green-600 text-white' : 'bg-slate-200 text-slate-600'
+                  step.done ? 'bg-eco text-white' : 'bg-white/10 text-white/70'
                 }`}>
                   {step.done ? '✓' : i + 1}
                 </span>
                 <div>
-                  <span className="font-medium text-slate-900">{step.label}</span>
-                  {step.date && <p className="text-xs text-slate-500">{step.date}</p>}
+                  <span className="font-medium text-white">{step.label}</span>
+                  {step.date && <p className="text-xs text-white/60">{step.date}</p>}
                 </div>
               </li>
             ))}
           </ul>
         </div>
 
-        <p className="text-sm text-slate-500">
+        <p className="text-sm text-white/60">
           Full chain-of-custody is recorded. Once the lot is dispatched to the recycler, your material will be processed there within the estimated period.
         </p>
       </div>

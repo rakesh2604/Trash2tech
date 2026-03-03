@@ -35,12 +35,12 @@ export default async function AdminIncentivesPage(props: { searchParams?: Search
 
   return (
     <AppShell title="E-waste Console">
-      <h2 className="text-xl font-bold tracking-tight text-slate-900">Incentive ledger</h2>
-      <p className="text-sm text-slate-600 mt-1 mb-4">
+      <h2 className="text-xl font-bold tracking-tight text-white">Incentive ledger</h2>
+      <p className="text-sm text-white/70 mt-1 mb-4">
         Accrued, approved, and paid incentives. Filter by actor type or status.
       </p>
       {listError && (
-        <div className="mb-4 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800" role="alert">
+        <div className="mb-4 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300" role="alert">
           {listError}
         </div>
       )}
@@ -52,10 +52,10 @@ export default async function AdminIncentivesPage(props: { searchParams?: Search
           description="Incentives are recorded when configured (e.g. per lot or pickup)."
         />
       ) : (
-        <div className="overflow-x-auto rounded-xl border border-slate-200">
-          <table className="min-w-full text-sm">
-            <thead className="bg-slate-50">
-              <tr className="text-left text-slate-700">
+        <div className="table-glass overflow-x-auto">
+          <table>
+            <thead>
+              <tr>
                 <th className="p-3">Actor type</th>
                 <th className="p-3">Actor ID</th>
                 <th className="p-3">Amount (INR)</th>
@@ -66,13 +66,13 @@ export default async function AdminIncentivesPage(props: { searchParams?: Search
             </thead>
             <tbody>
               {incentives.map((i) => (
-                <tr key={i.id} className="border-t border-slate-200">
-                  <td className="p-3 font-medium text-slate-900">{i.actorType}</td>
-                  <td className="p-3 text-slate-600">{i.actorId?.slice(0, 8)}…</td>
-                  <td className="p-3 text-slate-600">{i.amountInr ?? (i.amountCents != null ? (i.amountCents / 100).toFixed(2) : '—')}</td>
-                  <td className="p-3 text-slate-600">{i.status}</td>
-                  <td className="p-3 text-slate-500">{i.reason ?? '—'}</td>
-                  <td className="p-3 text-slate-500">{new Date(i.createdAt).toLocaleString()}</td>
+                <tr key={i.id}>
+                  <td className="p-3 font-medium">{i.actorType}</td>
+                  <td className="p-3">{i.actorId?.slice(0, 8)}…</td>
+                  <td className="p-3">{i.amountInr ?? (i.amountCents != null ? (i.amountCents / 100).toFixed(2) : '—')}</td>
+                  <td className="p-3">{i.status}</td>
+                  <td className="p-3 text-white/70">{i.reason ?? '—'}</td>
+                  <td className="p-3 text-white/70">{new Date(i.createdAt).toLocaleString()}</td>
                 </tr>
               ))}
             </tbody>

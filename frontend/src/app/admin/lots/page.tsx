@@ -43,12 +43,12 @@ export default async function AdminLotsPage(props: { searchParams?: SearchParams
 
   return (
     <AppShell title="E-waste Console">
-      <h2 className="text-xl font-bold tracking-tight text-slate-900">Lots</h2>
-      <p className="text-sm text-slate-600 mt-1 mb-4">
+      <h2 className="text-xl font-bold tracking-tight text-white">Lots</h2>
+      <p className="text-sm text-white/70 mt-1 mb-4">
         Aggregation hub lots and recycler dispatch status. Filter by status, hub, or recycler.
       </p>
       {listError && (
-        <div className="mb-4 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800" role="alert">
+        <div className="mb-4 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300" role="alert">
           {listError}
         </div>
       )}

@@ -1,60 +1,56 @@
-# E-Waste Traceability — Landing Page Structure (PlacedAI-style)
+# Trash2Tech Landing Page — Premium Dark Eco-Tech
 
-This document describes the landing page layout and components for quick reference and maintenance.
+This document describes the landing page layout and components.
 
 ## Page order (top to bottom)
 
-1. **PublicHeader** — Sticky nav: logo, Home | About | Features | Pricing | Contact, Sign in (purple), Get started
-2. **Hero** — Headline with highlighted word “traceable”, subtext, Get started + Learn more, Trusted by bar
-3. **StatsSection** — 3 metrics: Kg collected, Hub partners, Pickups completed (with icons)
-4. **MeetPartnerSection** — “Meet E-Waste Traceability” + 3 feature cards (gradient icons)
-5. **HowItWorks** — “How E-Waste Traceability works” + 4 steps with numbered gradient circles
-6. **VideoSection** — “See how it works” + video from `public/video/How its works.mp4`
-7. **TestimonialsSection** — “What citizens & partners say” + 2 testimonial cards
-8. **WhyIndiaSection** — “Why E-Waste Traceability works in India” + 3 cards (Local expertise, Verified network, Compliance-ready)
-9. **PricingSection** — “Simple, transparent access” + 3 plans (Citizen free, Hub/Recycler, EPR brand)
-10. **BookPickupCTA** — Book a pickup (WhatsApp + missed call)
-11. **DataAndReports** — Compliance analytics (gap, network, WhatsApp booking)
-12. **ImpactSection** — Impact & gap metrics (dark blue)
-13. **PublicFooter** — Dark footer: logo, Company | Solutions | Resources columns, copyright, social links
+1. **PublicHeader** — Sticky nav: logo (Trash2Tech), Home | About | Features | Pricing | Contact, Login (outline glass), Sign up (glow green)
+2. **HeroNew** — Headline “E-Waste Recycling Made Transparent & Traceable”, subheading, Get started + Learn more, right: dashboard mockup with float animation
+3. **StatsSectionNew** — 4 metrics: Kg recycled, Cities active, Verified recyclers, Compliance reports (animated counters, GlassCards)
+4. **FeaturesGrid** — “Core Capabilities”, 6 feature cards (Digital Chain of Custody, Verified Recycler Network, etc.)
+5. **HowItWorksStepper** — 4 steps: Book Pickup, Collection & Weighing, Verified Recycling, Impact & Compliance Report
+6. **TechStackSection** — React, Node, PostgreSQL, Blockchain, Analytics (glass cards, hover rise)
+7. **ImpactIndiaSection** — “Impact & Transparency Gap in India”, big numbers + animated progress bars
+8. **FinalCTA** — “Start Responsible Recycling Today”, Book a Pickup (WhatsApp), optional missed-call link
+9. **PublicFooter** — Dark footer: logo, Company | Solutions | Resources, copyright, social
 
 ## Section IDs (for anchor links)
 
 - `#main-content` — Skip link target
-- `#why-trust-us` — About / Meet partner
+- `#why-trust-us` — Features / Core Capabilities
 - `#how-it-works` — How it works
-- `#pricing` — Pricing
-- `#contact` — Footer / contact
+- `#pricing` — Final CTA (Pricing nav scrolls here)
+- `#contact` — Footer
+- `#stats` — Stats section
+- `#impact` — Impact India section
 
-## Design tokens (Tailwind)
+## Design system (landing)
 
-- **Accent (PlacedAI-style):** `accent-blue` (#3b82f6), `accent-purple` (#7c3aed), `accent-purple-light` (#8b5cf6), `accent-violet` (#6366f1)
-- **Brand (existing):** `brand`, `brand-light`, `brand-dark`
-- Use gradient for CTAs and step numbers: `from-accent-blue to-accent-purple` or `from-accent-purple to-accent-purple-light`
+- **Theme:** Dark eco-tech; gradient `#0B1220` → `#0F1A2B` → `#071018`
+- **Primary:** `#22C55E` (eco green); **Secondary:** `#3B82F6` (electric blue)
+- **Glass cards:** `rgba(255,255,255,0.05)`, `backdrop-blur: 12px`, border `rgba(255,255,255,0.1)`, hover lift + green glow
+- **Font:** Inter (via `next/font`)
+
+## Reusable primitives
+
+- **AnimatedBackground** — Faint rotating recycling-arrows SVG (Option A)
+- **GlassCard** — Glassmorphism card with hover lift
+- **SectionWrapper** — Section + section-inner wrapper, optional id
+- **GlowButton** — Primary (green gradient + glow) / Secondary (outline glass)
 
 ## Components location
 
 All under `src/components/landing/`:
 
-- PublicHeader.tsx
-- Hero.tsx
-- ImageCarousel.tsx
-- StatsSection.tsx
-- MeetPartnerSection.tsx
-- HowItWorks.tsx
-- VideoSection.tsx
-- TestimonialsSection.tsx
-- WhyIndiaSection.tsx
-- PricingSection.tsx
-- BookPickupCTA.tsx
-- DataAndReports.tsx
-- ImpactSection.tsx
-- PublicFooter.tsx
+- PublicHeader.tsx, PublicFooter.tsx
+- AnimatedBackground.tsx, GlassCard.tsx, SectionWrapper.tsx, GlowButton.tsx
+- HeroNew.tsx, StatsSectionNew.tsx, FeaturesGrid.tsx, HowItWorksStepper.tsx
+- TechStackSection.tsx, ImpactIndiaSection.tsx, FinalCTA.tsx
 
-## Video asset
+## Env vars (landing)
 
-Place the “How it works” video at:
+- **FinalCTA / Book a Pickup:** `NEXT_PUBLIC_WHATSAPP_NUMBER`, `NEXT_PUBLIC_MISSED_CALL_NUMBER` (default `919876543210`)
 
-`public/video/How its works.mp4`
+## Legacy components (not used on home)
 
-If the file name changes, update `VideoSection.tsx` (`VIDEO_SRC`).
+Kept in folder but not imported on `/`: Hero.tsx, StatsSection.tsx, MeetPartnerSection.tsx, HowItWorks.tsx, VideoSection.tsx, TestimonialsSection.tsx, WhyIndiaSection.tsx, PricingSection.tsx, BookPickupCTA.tsx, DataAndReports.tsx, ImpactSection.tsx, ImageCarousel.tsx, WhyTrustUs.tsx.

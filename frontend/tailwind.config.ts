@@ -20,6 +20,14 @@ const config: Config = {
           'green-light': '#2f855a',
           'green-muted': '#22543d',
         },
+        /* Landing eco-tech palette */
+        eco: {
+          DEFAULT: '#22C55E',
+          glow: 'rgba(34,197,94,0.4)',
+        },
+        electric: {
+          DEFAULT: '#3B82F6',
+        },
         /* Status semantics for pickup/lot states */
         status: {
           requested: '#3182ce',
@@ -33,13 +41,21 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+        sans: ['var(--font-inter)', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
       },
       maxWidth: {
         content: 'var(--content-max-w, 1280px)',
       },
       minHeight: {
         touch: 'var(--touch-min-h, 44px)',
+      },
+      backgroundImage: {
+        'eco-gradient': 'linear-gradient(180deg, #0B1220 0%, #0F1A2B 50%, #071018 100%)',
+      },
+      boxShadow: {
+        'eco-glow-subtle': '0 0 25px rgba(34,197,94,0.25)',
+        'eco-glow': '0 0 40px rgba(34,197,94,0.25)',
+        'eco-glow-strong': '0 0 60px rgba(34,197,94,0.35)',
       },
     },
   },

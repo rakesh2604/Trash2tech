@@ -50,14 +50,14 @@ export function PickupsTableClient(props: { pickups: Pickup[] }) {
   return (
     <>
       {error && (
-        <p className="mb-4 text-sm text-red-700 bg-red-50 rounded-lg px-3 py-2" role="alert">
+        <p className="mb-4 text-sm text-red-300 bg-red-500/10 border border-red-500/30 rounded-xl px-3 py-2" role="alert">
           {error}
         </p>
       )}
-      <div className="overflow-x-auto rounded-xl border border-slate-200">
-        <table className="min-w-full text-sm">
-          <thead className="bg-slate-50">
-            <tr className="text-left text-slate-700">
+      <div className="table-glass overflow-x-auto">
+        <table>
+          <thead>
+            <tr>
               <th className="p-3">Pickup code</th>
               <th className="p-3">Status</th>
               <th className="p-3">Hub</th>
@@ -68,15 +68,15 @@ export function PickupsTableClient(props: { pickups: Pickup[] }) {
           </thead>
           <tbody>
             {pickups.map((p) => (
-              <tr key={p.id} className="border-t border-slate-200">
-                <td className="p-3 font-medium text-slate-900">{p.pickupCode}</td>
-                <td className="p-3 text-slate-600">{p.status}</td>
-                <td className="p-3 text-slate-600">{p.hub?.name ?? p.hub?.id ?? '—'}</td>
-                <td className="p-3 text-slate-600">{p.sourceChannel}</td>
-                <td className="p-3 text-slate-500">{new Date(p.createdAt).toLocaleString()}</td>
+              <tr key={p.id}>
+                <td className="p-3 font-medium">{p.pickupCode}</td>
+                <td className="p-3">{p.status}</td>
+                <td className="p-3">{p.hub?.name ?? p.hub?.id ?? '—'}</td>
+                <td className="p-3">{p.sourceChannel}</td>
+                <td className="p-3 text-white/70">{new Date(p.createdAt).toLocaleString()}</td>
                 <td className="p-3">
                   <select
-                    className="input-base w-40 text-sm"
+                    className="input-glass w-40 text-sm py-2"
                     value=""
                     onChange={(e) => {
                       const v = e.target.value;

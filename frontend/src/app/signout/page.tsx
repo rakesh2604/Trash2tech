@@ -12,8 +12,8 @@ export default function SignOutPage() {
   }, []);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50">
-      <p className="text-slate-600">Signing out…</p>
+    <div className="min-h-screen flex items-center justify-center bg-[var(--app-bg)]">
+      <p className="text-white/70">Signing out…</p>
     </div>
   );
 }

@@ -229,15 +229,15 @@ export function CitizenDashboardClient() {
 
   if (loading) {
     return (
-      <div className="text-slate-600 py-8">Loading...</div>
+      <div className="text-white/70 py-8">Loading...</div>
     );
   }
 
   return (
     <div className="space-y-8">
       <div>
-        <h2 className="text-xl font-bold tracking-tight text-slate-900">Sell your e-waste</h2>
-        <p className="mt-1 text-slate-600">
+        <h2 className="text-xl font-bold tracking-tight text-white">Sell your e-waste</h2>
+        <p className="mt-1 text-white/70">
           Select material categories and estimated weight. Our vendor will collect, weigh at hub, pay you, and ensure digital traceability to the recycler.
         </p>
       </div>
@@ -257,17 +257,17 @@ export function CitizenDashboardClient() {
         </section>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-6 rounded-xl border border-slate-200 bg-slate-50/50 p-6">
-        <h3 className="font-semibold text-slate-900">Raise a sell request</h3>
+      <form onSubmit={handleSubmit} className="space-y-6 rounded-2xl glass-card p-6">
+        <h3 className="font-semibold text-white">Raise a sell request</h3>
 
         <div>
           <div className="flex flex-wrap items-center gap-2 mb-3">
-            <span className="text-sm font-medium text-slate-700">Address *</span>
+            <span className="text-sm font-medium text-white/80">Address *</span>
             <button
               type="button"
               onClick={fillAddressFromLocation}
               disabled={locationLoading}
-              className="inline-flex items-center gap-1.5 rounded-lg border border-brand bg-white px-3 py-1.5 text-sm font-medium text-brand hover:bg-brand/5 focus-visible:outline focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 disabled:opacity-60"
+              className="inline-flex items-center gap-1.5 rounded-xl border border-eco/50 bg-eco/10 px-3 py-1.5 text-sm font-medium text-eco hover:bg-eco/20 focus-visible:outline focus-visible:ring-2 focus-visible:ring-eco focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--app-bg)] disabled:opacity-60"
             >
               {locationLoading ? (
                 <>
@@ -293,9 +293,9 @@ export function CitizenDashboardClient() {
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
           <div>
-            <label className="block text-sm font-medium text-slate-700">Address line 1 *</label>
+            <label className="block text-sm font-medium text-white/80">Address line 1 *</label>
             <input
-              className="input-base mt-1"
+              className="input-glass mt-1"
               value={form.address.line1}
               onChange={(e) => setForm((f) => ({ ...f, address: { ...f.address, line1: e.target.value } }))}
               required
@@ -303,27 +303,27 @@ export function CitizenDashboardClient() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-slate-700">Line 2</label>
+            <label className="block text-sm font-medium text-white/80">Line 2</label>
             <input
-              className="input-base mt-1"
+              className="input-glass mt-1"
               value={form.address.line2}
               onChange={(e) => setForm((f) => ({ ...f, address: { ...f.address, line2: e.target.value } }))}
               placeholder="Area / landmark"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-slate-700">Landmark</label>
+            <label className="block text-sm font-medium text-white/80">Landmark</label>
             <input
-              className="input-base mt-1"
+              className="input-glass mt-1"
               value={form.address.landmark}
               onChange={(e) => setForm((f) => ({ ...f, address: { ...f.address, landmark: e.target.value } }))}
               placeholder="Near..."
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-slate-700">City *</label>
+            <label className="block text-sm font-medium text-white/80">City *</label>
             <input
-              className="input-base mt-1"
+              className="input-glass mt-1"
               value={form.address.city}
               onChange={(e) => setForm((f) => ({ ...f, address: { ...f.address, city: e.target.value } }))}
               required
@@ -331,9 +331,9 @@ export function CitizenDashboardClient() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-slate-700">State *</label>
+            <label className="block text-sm font-medium text-white/80">State *</label>
             <input
-              className="input-base mt-1"
+              className="input-glass mt-1"
               value={form.address.state}
               onChange={(e) => setForm((f) => ({ ...f, address: { ...f.address, state: e.target.value } }))}
               required
@@ -341,9 +341,9 @@ export function CitizenDashboardClient() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-slate-700">Pincode *</label>
+            <label className="block text-sm font-medium text-white/80">Pincode *</label>
             <input
-              className="input-base mt-1"
+              className="input-glass mt-1"
               value={form.address.pincode}
               onChange={(e) => setForm((f) => ({ ...f, address: { ...f.address, pincode: e.target.value } }))}
               required
@@ -354,9 +354,9 @@ export function CitizenDashboardClient() {
         </div>
         {categories.length > 0 && (
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-2">Campaign (optional)</label>
+            <label className="block text-sm font-medium text-white/80 mb-2">Campaign (optional)</label>
             <select
-              className="input-base max-w-xs"
+              className="input-glass max-w-xs"
               value={form.campaignId}
               onChange={(e) => setForm((f) => ({ ...f, campaignId: e.target.value }))}
             >
@@ -369,17 +369,17 @@ export function CitizenDashboardClient() {
         )}
         <div>
           <div className="flex items-center justify-between">
-            <label className="block text-sm font-medium text-slate-700">Material categories & weight (kg) *</label>
-            <button type="button" onClick={addItem} className="text-sm text-brand font-medium hover:underline">
+            <label className="block text-sm font-medium text-white/80">Material categories & weight (kg) *</label>
+            <button type="button" onClick={addItem} className="text-sm text-eco font-medium hover:underline">
               + Add item
             </button>
           </div>
           <div className="mt-2 space-y-3">
             {form.items.map((item, i) => (
-              <div key={i} className="rounded-lg border border-slate-200 bg-white p-3 space-y-2">
+              <div key={i} className="rounded-xl border border-white/10 bg-white/5 p-3 space-y-2">
                 <div className="flex flex-wrap items-center gap-2">
                   <select
-                    className="input-base flex-1 min-w-[180px]"
+                    className="input-glass flex-1 min-w-[180px]"
                     value={item.materialCategoryId}
                     onChange={(e) => updateItem(i, 'materialCategoryId', e.target.value)}
                     required
@@ -393,18 +393,18 @@ export function CitizenDashboardClient() {
                   type="number"
                   min={0.01}
                   step={0.01}
-                  className="input-base w-24"
+                  className="input-glass w-24"
                   value={item.estimatedWeightKg || ''}
                   onChange={(e) => updateItem(i, 'estimatedWeightKg', e.target.value ? Number(e.target.value) : 0)}
                   placeholder="kg"
                 />
-                  <button type="button" onClick={() => removeItem(i)} className="text-slate-500 hover:text-red-600 text-sm" aria-label="Remove item">
+                  <button type="button" onClick={() => removeItem(i)} className="text-white/60 hover:text-red-300 text-sm" aria-label="Remove item">
                     Remove
                   </button>
                 </div>
                 <input
                   type="text"
-                  className="input-base text-sm"
+                  className="input-glass text-sm"
                   value={item.description || ''}
                   onChange={(e) => updateItem(i, 'description', e.target.value)}
                   placeholder="Details (e.g. 2 laptops, 1 monitor, condition)"
@@ -416,29 +416,29 @@ export function CitizenDashboardClient() {
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
           <div>
-            <label className="block text-sm font-medium text-slate-700">Preferred pickup date from (optional)</label>
+            <label className="block text-sm font-medium text-white/80">Preferred pickup date from (optional)</label>
             <input
               type="date"
-              className="input-base mt-1"
+              className="input-glass mt-1"
               value={form.preferredDateFrom}
               onChange={(e) => setForm((f) => ({ ...f, preferredDateFrom: e.target.value }))}
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-slate-700">Preferred pickup date to (optional)</label>
+            <label className="block text-sm font-medium text-white/80">Preferred pickup date to (optional)</label>
             <input
               type="date"
-              className="input-base mt-1"
+              className="input-glass mt-1"
               value={form.preferredDateTo}
               onChange={(e) => setForm((f) => ({ ...f, preferredDateTo: e.target.value }))}
             />
           </div>
         </div>
         <div>
-          <label className="block text-sm font-medium text-slate-700">Alternate phone for pickup (optional)</label>
+          <label className="block text-sm font-medium text-white/80">Alternate phone for pickup (optional)</label>
           <input
             type="tel"
-            className="input-base mt-1 max-w-xs"
+            className="input-glass mt-1 max-w-xs"
             value={form.alternatePhone}
             onChange={(e) => setForm((f) => ({ ...f, alternatePhone: e.target.value }))}
             placeholder="10-digit mobile"
@@ -446,9 +446,9 @@ export function CitizenDashboardClient() {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-slate-700">Notes (optional)</label>
+          <label className="block text-sm font-medium text-white/80">Notes (optional)</label>
           <textarea
-            className="input-base mt-1 min-h-[80px]"
+            className="input-glass mt-1 min-h-[80px]"
             value={form.notes}
             onChange={(e) => setForm((f) => ({ ...f, notes: e.target.value }))}
             placeholder="Any details for the collector"
@@ -456,22 +456,22 @@ export function CitizenDashboardClient() {
         </div>
         {error && <p className="text-sm text-red-700 bg-red-50 rounded-lg px-3 py-2 border border-red-100" role="alert">{error}</p>}
         {success && <p className="text-sm text-green-800 bg-green-50 rounded-lg px-3 py-2 border border-green-200" role="status">{success}</p>}
-        <button type="submit" disabled={submitLoading} className="btn-primary">
+        <button type="submit" disabled={submitLoading} className="btn-glass-primary">
           {submitLoading ? 'Submitting…' : 'Submit sell request'}
         </button>
       </form>
 
       <section>
-        <h3 className="font-semibold text-slate-900 mb-3">My sell requests</h3>
+        <h3 className="font-semibold text-white mb-3">My sell requests</h3>
         {requests.length === 0 ? (
-          <p className="text-slate-600">No requests yet. Submit one above.</p>
+          <p className="text-white/70">No requests yet. Submit one above.</p>
         ) : (
           <ul className="space-y-3">
             {requests.map((r) => (
-              <li key={r.id} className="rounded-lg border border-slate-200 bg-white p-4">
+              <li key={r.id} className="rounded-xl glass-card p-4">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <div>
-                    <span className="font-medium text-slate-900">
+                    <span className="font-medium text-white">
                       {r.address?.line1}, {r.address?.city} — {r.totalEstimatedKg} kg
                     </span>
                     {r.campaign?.name && (
@@ -482,14 +482,14 @@ export function CitizenDashboardClient() {
                     {STATUS_LABELS[r.status] ?? r.status}
                   </span>
                 </div>
-                <p className="text-xs text-slate-500 mt-1">
+                <p className="text-xs text-white/60 mt-1">
                   {new Date(r.createdAt).toLocaleString()}
                   {r.preferredDateFrom && r.preferredDateTo && ` · Preferred: ${new Date(r.preferredDateFrom).toLocaleDateString()} – ${new Date(r.preferredDateTo).toLocaleDateString()}`}
                   {r.alternatePhone && ` · Alt. phone: ${r.alternatePhone}`}
                   {r.paymentAmountRs && ` · ₹${r.paymentAmountRs} paid`}
                 </p>
                 {r.items && r.items.length > 0 && (
-                  <ul className="text-xs text-slate-600 mt-1 list-disc list-inside">
+                  <ul className="text-xs text-white/70 mt-1 list-disc list-inside">
                     {r.items.map((it, idx) => (
                       <li key={idx}>{it.materialCategory?.code} {it.estimatedWeightKg} kg{it.description ? ` — ${it.description}` : ''}</li>
                     ))}
@@ -497,7 +497,7 @@ export function CitizenDashboardClient() {
                 )}
                 <Link
                   href={`/citizen/requests/${r.id}`}
-                  className="mt-2 inline-block text-sm font-medium text-brand hover:underline"
+                  className="mt-2 inline-block text-sm font-medium text-eco hover:underline"
                 >
                   View traceability →
                 </Link>
@@ -507,8 +507,8 @@ export function CitizenDashboardClient() {
         )}
       </section>
 
-      <p className="text-sm text-slate-500">
-        <Link href="/" className="text-brand hover:underline font-medium">← Back to home</Link> to see how the network works.
+      <p className="text-sm text-white/60">
+        <Link href="/" className="text-eco hover:underline font-medium">← Back to home</Link> to see how the network works.
       </p>
     </div>
   );

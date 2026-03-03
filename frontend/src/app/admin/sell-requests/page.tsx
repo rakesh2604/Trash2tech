@@ -101,29 +101,29 @@ export default function AdminSellRequestsPage() {
   };
 
   if (loading && requests.length === 0) {
-    return <AppShell title="E-waste Console"><div className="py-8 text-slate-600">Loading...</div></AppShell>;
+    return <AppShell title="E-waste Console"><div className="py-8 text-white/70">Loading...</div></AppShell>;
   }
 
   return (
     <AppShell title="E-waste Console">
-      <h2 className="text-xl font-bold tracking-tight text-slate-900">Citizen sell requests</h2>
+      <h2 className="text-xl font-bold tracking-tight text-white">Citizen sell requests</h2>
 
       {/* Flow explanation */}
-      <div className="mt-2 mb-6 p-4 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-700">
-        <h3 className="font-semibold text-slate-900 mb-2">Kahan se accept karein aur aage ka process</h3>
+      <div className="mt-2 mb-6 p-4 rounded-2xl glass-card text-sm text-white/80">
+        <h3 className="font-semibold text-white mb-2">Kahan se accept karein aur aage ka process</h3>
         <ol className="list-decimal list-inside space-y-1.5">
           <li><strong>Accept request:</strong> Neeche table mein <strong>OPEN</strong> status wale requests ko dekhen. &quot;Convert to pickup&quot; dabayein, hub select karein, phir &quot;Convert&quot; — isse ek <strong>Pickup</strong> create ho jata hai.</li>
-          <li><strong>Pickup flow:</strong> Created pickup <Link href="/admin/pickups" className="text-brand hover:underline font-medium">Admin → Pickups</Link> mein dikhega. Wahan se Field Captain / Kabadi ko assign kiya ja sakta hai; vendor citizen ke yahan jaa kar e-waste collect karta hai, hub par le jaata hai.</li>
-          <li><strong>Hub par:</strong> <Link href="/captain/intake" className="text-brand hover:underline font-medium">Hub intake</Link> se weight record hota hai — sell request status automatically <strong>AT_HUB</strong> / <strong>WEIGHED</strong> ho jata hai.</li>
+          <li><strong>Pickup flow:</strong> Created pickup <Link href="/admin/pickups" className="text-eco hover:underline font-medium">Admin → Pickups</Link> mein dikhega. Wahan se Field Captain / Kabadi ko assign kiya ja sakta hai; vendor citizen ke yahan jaa kar e-waste collect karta hai, hub par le jaata hai.</li>
+          <li><strong>Hub par:</strong> <Link href="/captain/intake" className="text-eco hover:underline font-medium">Hub intake</Link> se weight record hota hai — sell request status automatically <strong>AT_HUB</strong> / <strong>WEIGHED</strong> ho jata hai.</li>
           <li><strong>Payment:</strong> Jab status <strong>WEIGHED</strong> ho jaye, isi page par usi row mein &quot;Record payment&quot; se amount daal kar payment complete karein — status <strong>PAID</strong> ho jayega aur citizen ko traceability dikhegi.</li>
           <li><strong>Aage:</strong> Lot create, recycler tak dispatch — sell request <strong>IN_LOT</strong> / <strong>RECYCLED</strong> tak update hota rehta hai; citizen apne dashboard se track kar sakta hai.</li>
         </ol>
       </div>
       <div className="mb-4 flex flex-wrap items-center gap-2">
-        <label htmlFor="status-filter" className="text-sm font-medium text-slate-700">Filter by status</label>
+        <label htmlFor="status-filter" className="text-sm font-medium text-white/80">Filter by status</label>
         <select
           id="status-filter"
-          className="input-base w-48"
+          className="input-glass w-48"
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
         >
@@ -132,15 +132,15 @@ export default function AdminSellRequestsPage() {
           ))}
         </select>
       </div>
-      {error && <p className="mb-4 text-sm text-red-700 bg-red-50 rounded-lg px-3 py-2" role="alert">{error}</p>}
-      {success && <p className="mb-4 text-sm text-green-800 bg-green-50 rounded-lg px-3 py-2 border border-green-200" role="status">{success}</p>}
+      {error && <p className="mb-4 text-sm text-red-300 bg-red-500/10 rounded-xl px-3 py-2 border border-red-500/30" role="alert">{error}</p>}
+      {success && <p className="mb-4 text-sm text-eco bg-eco/10 rounded-xl px-3 py-2 border border-eco/30" role="status">{success}</p>}
       {requests.length === 0 ? (
-        <p className="text-slate-600">No sell requests yet.</p>
+        <p className="text-white/70">No sell requests yet.</p>
       ) : (
-        <div className="overflow-x-auto rounded-xl border border-slate-200">
-          <table className="min-w-full text-sm">
-            <thead className="bg-slate-50">
-              <tr className="text-left text-slate-700">
+        <div className="table-glass overflow-x-auto">
+          <table>
+            <thead>
+              <tr>
                 <th className="p-3">Address</th>
                 <th className="p-3">Kg</th>
                 <th className="p-3">Items</th>
@@ -156,41 +156,39 @@ export default function AdminSellRequestsPage() {
             </thead>
             <tbody>
               {requests.map((r) => (
-                <tr key={r.id} className="border-t border-slate-200">
-                  <td className="p-3 text-slate-600">{r.address?.line1}, {r.address?.city} {r.address?.pincode}</td>
-                  <td className="p-3 text-slate-600">{r.totalEstimatedKg}</td>
-                  <td className="p-3 text-slate-600 text-xs">{r.items?.map((i) => `${i.materialCategory?.code} ${i.estimatedWeightKg}kg`).join(', ') ?? '—'}</td>
-                  <td className="p-3 text-slate-600 text-xs">{r.preferredDateFrom && r.preferredDateTo ? `${new Date(r.preferredDateFrom).toLocaleDateString()} – ${new Date(r.preferredDateTo).toLocaleDateString()}` : '—'}</td>
-                  <td className="p-3 text-slate-600">{r.alternatePhone ?? '—'}</td>
-                  <td className="p-3 text-slate-600">{r.campaign?.name ?? '—'}</td>
+                <tr key={r.id}>
+                  <td className="p-3">{r.address?.line1}, {r.address?.city} {r.address?.pincode}</td>
+                  <td className="p-3">{r.totalEstimatedKg}</td>
+                  <td className="p-3 text-xs">{r.items?.map((i) => `${i.materialCategory?.code} ${i.estimatedWeightKg}kg`).join(', ') ?? '—'}</td>
+                  <td className="p-3 text-xs text-white/70">{r.preferredDateFrom && r.preferredDateTo ? `${new Date(r.preferredDateFrom).toLocaleDateString()} – ${new Date(r.preferredDateTo).toLocaleDateString()}` : '—'}</td>
+                  <td className="p-3">{r.alternatePhone ?? '—'}</td>
+                  <td className="p-3">{r.campaign?.name ?? '—'}</td>
                   <td className="p-3"><span className="badge badge-requested">{STATUS_LABELS[r.status] ?? r.status}</span></td>
-                  <td className="p-3 text-slate-600">
+                  <td className="p-3">
                     {r.pickup ? (
-                      <Link href="/admin/pickups" className="text-brand hover:underline font-medium" title="View pickups">{r.pickup.pickupCode}</Link>
+                      <Link href="/admin/pickups" className="text-eco hover:underline font-medium" title="View pickups">{r.pickup.pickupCode}</Link>
                     ) : '—'}
                   </td>
-                  <td className="p-3 text-slate-600">
-                    {r.paymentAmountRs != null ? `₹${r.paymentAmountRs}` : '—'}
-                  </td>
-                  <td className="p-3 text-slate-500">{new Date(r.createdAt).toLocaleString()}</td>
+                  <td className="p-3">{r.paymentAmountRs != null ? `₹${r.paymentAmountRs}` : '—'}</td>
+                  <td className="p-3 text-white/70">{new Date(r.createdAt).toLocaleString()}</td>
                   <td className="p-3">
                     {r.status === 'OPEN' && (
                       <div className="flex flex-wrap items-center gap-2">
                         {convertId === r.id ? (
                           <>
                             <select
-                              className="input-base w-40"
+                              className="input-glass w-40 text-sm py-2"
                               value={convertHubId}
                               onChange={(e) => setConvertHubId(e.target.value)}
                             >
                               <option value="">Select hub</option>
                               {hubs.map((h) => <option key={h.id} value={h.id}>{h.name}</option>)}
                             </select>
-                            <button type="button" onClick={() => handleConvert(r.id)} className="btn-primary text-sm">Convert</button>
-                            <button type="button" onClick={() => { setConvertId(null); setConvertHubId(''); }} className="text-slate-600 hover:underline text-sm">Cancel</button>
+                            <button type="button" onClick={() => handleConvert(r.id)} className="btn-glass-primary text-sm py-1.5 px-3">Convert</button>
+                            <button type="button" onClick={() => { setConvertId(null); setConvertHubId(''); }} className="text-white/70 hover:underline text-sm">Cancel</button>
                           </>
                         ) : (
-                          <button type="button" onClick={() => setConvertId(r.id)} className="btn-primary text-sm">Convert to pickup</button>
+                          <button type="button" onClick={() => setConvertId(r.id)} className="btn-glass-primary text-sm py-1.5 px-3">Convert to pickup</button>
                         )}
                       </div>
                     )}
@@ -203,15 +201,15 @@ export default function AdminSellRequestsPage() {
                               min={0}
                               step={0.01}
                               placeholder="Amount (₹)"
-                              className="input-base w-28"
+                              className="input-glass w-28 text-sm py-2"
                               value={paymentAmount}
                               onChange={(e) => setPaymentAmount(e.target.value)}
                             />
-                            <button type="button" onClick={() => handleRecordPayment(r.id)} className="btn-primary text-sm">Save payment</button>
-                            <button type="button" onClick={() => { setPaymentId(null); setPaymentAmount(''); }} className="text-slate-600 hover:underline text-sm">Cancel</button>
+                            <button type="button" onClick={() => handleRecordPayment(r.id)} className="btn-glass-primary text-sm py-1.5 px-3">Save payment</button>
+                            <button type="button" onClick={() => { setPaymentId(null); setPaymentAmount(''); }} className="text-white/70 hover:underline text-sm">Cancel</button>
                           </>
                         ) : (
-                          <button type="button" onClick={() => setPaymentId(r.id)} className="btn-primary text-sm">Record payment</button>
+                          <button type="button" onClick={() => setPaymentId(r.id)} className="btn-glass-primary text-sm py-1.5 px-3">Record payment</button>
                         )}
                       </div>
                     )}

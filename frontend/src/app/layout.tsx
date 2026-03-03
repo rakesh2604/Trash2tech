@@ -1,5 +1,8 @@
 import type { ReactNode } from 'react';
+import { Inter } from 'next/font/google';
 import '../styles/globals.css';
+
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export const metadata = {
   title: "India's Traceable E-Waste Network | Compliance-Grade Collection",
@@ -9,7 +12,7 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={inter.variable}>
       <head>
         {/* Suppress unhandled errors from browser extensions (e.g. MetaMask) so they don't break the app overlay */}
         <script
@@ -34,8 +37,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           }}
         />
       </head>
-      <body suppressHydrationWarning>
-        <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-brand focus:px-3 focus:py-2 focus:text-white focus:outline-none">
+      <body suppressHydrationWarning className={inter.variable}>
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-eco focus:px-3 focus:py-2 focus:text-white focus:outline-none">
           Skip to main content
         </a>
         {children}

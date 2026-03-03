@@ -1,35 +1,44 @@
 import { PublicHeader } from '../components/landing/PublicHeader';
 import { PublicFooter } from '../components/landing/PublicFooter';
-import { Hero } from '../components/landing/Hero';
-import { StatsSection } from '../components/landing/StatsSection';
-import { MeetPartnerSection } from '../components/landing/MeetPartnerSection';
-import { HowItWorks } from '../components/landing/HowItWorks';
-import { VideoSection } from '../components/landing/VideoSection';
-import { TestimonialsSection } from '../components/landing/TestimonialsSection';
-import { WhyIndiaSection } from '../components/landing/WhyIndiaSection';
-import { PricingSection } from '../components/landing/PricingSection';
-import { BookPickupCTA } from '../components/landing/BookPickupCTA';
-import { DataAndReports } from '../components/landing/DataAndReports';
-import { ImpactSection } from '../components/landing/ImpactSection';
+import { AnimatedBackground } from '../components/landing/AnimatedBackground';
+import { HeroNew } from '../components/landing/HeroNew';
+import { StatsSectionNew } from '../components/landing/StatsSectionNew';
+import { EWasteFlowSection } from '../components/landing/EWasteFlowSection';
+import { FeaturesGrid } from '../components/landing/FeaturesGrid';
+import { HowItWorksStepper } from '../components/landing/HowItWorksStepper';
+import { TechStackSection } from '../components/landing/TechStackSection';
+import { ImpactIndiaSection } from '../components/landing/ImpactIndiaSection';
+import { TrustSection } from '../components/landing/TrustSection';
+import { FinalCTA } from '../components/landing/FinalCTA';
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-900">
-      <PublicHeader />
-      <main id="main-content" className="flex-1" tabIndex={-1}>
-        <Hero />
-        <StatsSection />
-        <MeetPartnerSection />
-        <HowItWorks />
-        <VideoSection />
-        <TestimonialsSection />
-        <WhyIndiaSection />
-        <PricingSection />
-        <BookPickupCTA />
-        <DataAndReports />
-        <ImpactSection />
-      </main>
-      <PublicFooter />
+    <div className="min-h-screen bg-eco-gradient text-white">
+      <div className="relative min-h-screen">
+        <AnimatedBackground />
+        <PublicHeader />
+        <main id="main-content" className="relative flex-1" tabIndex={-1}>
+          <HeroNew />
+          <StatsSectionNew />
+          <EWasteFlowSection />
+          <FeaturesGrid />
+          <HowItWorksStepper />
+          <TechStackSection />
+          <ImpactIndiaSection />
+          <TrustSection />
+          <section className="min-h-[24vh] bg-[#0f1a2a]" aria-hidden />
+          <FinalCTA />
+          {/* Gradient divider between CTA and footer: eco → transparent → eco */}
+          <div
+            className="h-px w-full opacity-60"
+            style={{
+              background: 'linear-gradient(90deg, rgba(34,197,94,0.2) 0%, transparent 50%, rgba(34,197,94,0.2) 100%)',
+            }}
+            aria-hidden
+          />
+        </main>
+        <PublicFooter />
+      </div>
     </div>
   );
 }

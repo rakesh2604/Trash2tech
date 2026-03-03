@@ -33,16 +33,16 @@ export default function AuditVerifyPage() {
 
   return (
     <AppShell title="E-waste Console">
-      <h2 className="text-xl font-bold tracking-tight text-slate-900">Audit chain verify</h2>
-      <p className="text-sm text-slate-600 mt-1 mb-6">
+      <h2 className="text-xl font-bold tracking-tight text-white">Audit chain verify</h2>
+      <p className="text-sm text-white/70 mt-1 mb-6">
         Recompute hash-chain for an entity to detect tampering. Enter entity type and UUID.
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-xl">
         <div>
-          <label className="block text-sm font-medium text-slate-700 mb-1">Entity type</label>
+          <label className="block text-sm font-medium text-white/80 mb-1">Entity type</label>
           <select
-            className="input-base min-h-[44px]"
+            className="input-glass min-h-[44px]"
             value={entityType}
             onChange={(e) => setEntityType(e.target.value)}
           >
@@ -52,9 +52,9 @@ export default function AuditVerifyPage() {
           </select>
         </div>
         <div>
-          <label className="block text-sm font-medium text-slate-700 mb-1">Entity ID (UUID) *</label>
+          <label className="block text-sm font-medium text-white/80 mb-1">Entity ID (UUID) *</label>
           <input
-            className="input-base"
+            className="input-glass"
             value={entityId}
             onChange={(e) => setEntityId(e.target.value)}
             placeholder="e.g. 550e8400-e29b-41d4-a716-446655440000"
@@ -67,7 +67,7 @@ export default function AuditVerifyPage() {
           type="button"
           onClick={run}
           disabled={loading}
-          className="btn-primary disabled:opacity-50"
+          className="btn-glass-primary disabled:opacity-50"
         >
           {loading ? 'Verifying…' : 'Verify'}
         </button>
@@ -79,7 +79,7 @@ export default function AuditVerifyPage() {
         </div>
       )}
       {result && (
-        <pre className="mt-4 text-xs bg-slate-100 border border-slate-200 rounded-xl p-4 overflow-auto text-slate-800 font-mono">
+        <pre className="mt-4 text-xs bg-white/5 border border-white/10 rounded-xl p-4 overflow-auto text-white/90 font-mono">
           {JSON.stringify(result, null, 2)}
         </pre>
       )}

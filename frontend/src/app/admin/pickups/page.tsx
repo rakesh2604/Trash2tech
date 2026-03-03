@@ -43,20 +43,20 @@ export default async function AdminPickupsPage(props: { searchParams?: SearchPar
     <AppShell title="E-waste Console">
       <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
         <div>
-          <h2 className="text-xl font-bold tracking-tight text-slate-900">Pickups</h2>
-          <p className="text-sm text-slate-600 mt-1">
+          <h2 className="text-xl font-bold tracking-tight text-white">Pickups</h2>
+          <p className="text-sm text-white/70 mt-1">
             Operational view of pickup chain-of-custody (latest first). Filter by status or hub.
           </p>
         </div>
         <Link
           href="/admin/create-pickup"
-          className="inline-flex min-h-[44px] items-center justify-center rounded-lg bg-brand px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-light focus-visible:outline focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+          className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-gradient-to-r from-eco to-emerald-600 px-5 py-2.5 text-sm font-semibold text-white shadow-[0_0_25px_rgba(34,197,94,0.25)] transition-all hover:scale-[1.02] hover:shadow-[0_0_35px_rgba(34,197,94,0.35)] focus-visible:outline focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--app-bg)]"
         >
           New pickup
         </Link>
       </div>
       {listError && (
-        <div className="mb-4 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800" role="alert">
+        <div className="mb-4 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300" role="alert">
           {listError}
         </div>
       )}

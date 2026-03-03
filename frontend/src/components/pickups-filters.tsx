@@ -37,10 +37,10 @@ export function PickupsFilters(props: {
   return (
     <div className="flex flex-wrap items-center gap-4 mb-6">
       <div>
-        <label htmlFor="filter-status" className="block text-xs font-medium text-slate-500 mb-1">Status</label>
+        <label htmlFor="filter-status" className="block text-xs font-medium text-white/70 mb-1">Status</label>
         <select
           id="filter-status"
-          className="input-base w-auto min-w-[160px]"
+          className="input-glass w-auto min-w-[160px]"
           value={status}
           onChange={(e) => update('status', e.target.value)}
         >
@@ -50,10 +50,10 @@ export function PickupsFilters(props: {
         </select>
       </div>
       <div>
-        <label htmlFor="filter-hub" className="block text-xs font-medium text-slate-500 mb-1">Hub</label>
+        <label htmlFor="filter-hub" className="block text-xs font-medium text-white/70 mb-1">Hub</label>
         <select
           id="filter-hub"
-          className="input-base w-auto min-w-[200px]"
+          className="input-glass w-auto min-w-[200px]"
           value={hubId}
           onChange={(e) => update('hubId', e.target.value)}
         >

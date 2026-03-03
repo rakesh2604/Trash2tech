@@ -97,7 +97,7 @@ export default function CaptainIntakePage() {
     return (
       <AppShell title="E-waste Console">
         <h2 className="text-lg font-semibold mb-1">Hub intake</h2>
-        <p className="text-sm text-slate-600">Loading options…</p>
+        <p className="text-sm text-white/70">Loading options…</p>
       </AppShell>
     );
   }
@@ -105,26 +105,26 @@ export default function CaptainIntakePage() {
   return (
     <AppShell title="E-waste Console">
       <h2 className="text-lg font-semibold mb-1">Hub intake</h2>
-      <p className="text-sm text-slate-600 mb-6">
+      <p className="text-sm text-white/70 mb-6">
         Record weight + category + photo proof at the hub. If offline, it queues locally.
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-xl">
         <div>
-          <label className="block text-sm font-medium text-slate-700 mb-1">Pickup ID (UUID) *</label>
+          <label className="block text-sm font-medium text-white/80 mb-1">Pickup ID (UUID) *</label>
           <input
             required
-            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 min-h-[44px] focus:border-brand focus:ring-1 focus:ring-brand"
+            className="input-glass w-full min-h-[44px]"
             placeholder="From Create pickup response"
             value={form.pickupId}
             onChange={(e) => setForm((f) => ({ ...f, pickupId: e.target.value }))}
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-slate-700 mb-1">Hub *</label>
+          <label className="block text-sm font-medium text-white/80 mb-1">Hub *</label>
           <select
             required
-            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 min-h-[44px] focus:border-brand focus:ring-1 focus:ring-brand"
+            className="input-glass w-full min-h-[44px]"
             value={form.hubId}
             onChange={(e) => setForm((f) => ({ ...f, hubId: e.target.value }))}
           >
@@ -135,10 +135,10 @@ export default function CaptainIntakePage() {
           </select>
         </div>
         <div>
-          <label className="block text-sm font-medium text-slate-700 mb-1">Officer (who is recording) *</label>
+          <label className="block text-sm font-medium text-white/80 mb-1">Officer (who is recording) *</label>
           <select
             required
-            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 min-h-[44px] focus:border-brand focus:ring-1 focus:ring-brand"
+            className="input-glass w-full min-h-[44px]"
             value={form.fieldCaptainUserId}
             onChange={(e) => setForm((f) => ({ ...f, fieldCaptainUserId: e.target.value }))}
           >
@@ -149,10 +149,10 @@ export default function CaptainIntakePage() {
           </select>
         </div>
         <div>
-          <label className="block text-sm font-medium text-slate-700 mb-1">Material category *</label>
+          <label className="block text-sm font-medium text-white/80 mb-1">Material category *</label>
           <select
             required
-            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 min-h-[44px] focus:border-brand focus:ring-1 focus:ring-brand"
+            className="input-glass w-full min-h-[44px]"
             value={form.materialCategoryId}
             onChange={(e) => setForm((f) => ({ ...f, materialCategoryId: e.target.value }))}
           >
@@ -163,37 +163,37 @@ export default function CaptainIntakePage() {
           </select>
         </div>
         <div>
-          <label className="block text-sm font-medium text-slate-700 mb-1">Hub weight (kg) *</label>
+          <label className="block text-sm font-medium text-white/80 mb-1">Hub weight (kg) *</label>
           <input
             required
             type="text"
-            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 min-h-[44px] focus:border-brand focus:ring-1 focus:ring-brand"
+            className="input-glass w-full min-h-[44px]"
             placeholder="e.g. 12.500"
             value={form.hubWeightKg}
             onChange={(e) => setForm((f) => ({ ...f, hubWeightKg: e.target.value }))}
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-slate-700 mb-1">Photo URL *</label>
+          <label className="block text-sm font-medium text-white/80 mb-1">Photo URL *</label>
           <input
-            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 min-h-[44px] focus:border-brand focus:ring-1 focus:ring-brand"
+            className="input-glass w-full min-h-[44px]"
             placeholder="https://..."
             value={form.photoUrl}
             onChange={(e) => setForm((f) => ({ ...f, photoUrl: e.target.value }))}
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-slate-700 mb-1">Kabadi ID (optional)</label>
+          <label className="block text-sm font-medium text-white/80 mb-1">Kabadi ID (optional)</label>
           <input
-            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 focus:border-brand focus:ring-1 focus:ring-brand"
+            className="input-glass w-full"
             value={form.kabadiId}
             onChange={(e) => setForm((f) => ({ ...f, kabadiId: e.target.value }))}
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-slate-700 mb-1">Remarks (optional)</label>
+          <label className="block text-sm font-medium text-white/80 mb-1">Remarks (optional)</label>
           <input
-            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 focus:border-brand focus:ring-1 focus:ring-brand"
+            className="input-glass w-full"
             value={form.remarks}
             onChange={(e) => setForm((f) => ({ ...f, remarks: e.target.value }))}
           />
@@ -203,14 +203,14 @@ export default function CaptainIntakePage() {
       <div className="mt-6 flex items-center gap-3">
         <button
           onClick={submit}
-          className="min-h-[44px] rounded-lg bg-brand px-4 py-2 text-sm font-medium text-white hover:bg-brand-light"
+          className="btn-glass-primary min-h-[44px] px-4 py-2 text-sm"
         >
           Submit intake
         </button>
-        <span className="text-sm text-slate-500">Weighed at: {weighedAt.slice(0, 19)}Z</span>
+        <span className="text-sm text-white/60">Weighed at: {weighedAt.slice(0, 19)}Z</span>
       </div>
 
-      {status ? <div className="mt-4 text-sm text-slate-700">{status}</div> : null}
+      {status ? <div className="mt-4 text-sm text-white/80">{status}</div> : null}
     </AppShell>
   );
 }

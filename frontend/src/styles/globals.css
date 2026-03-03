@@ -9,7 +9,7 @@
 
 :root {
   --content-max-w: 1280px;
-  --section-py-desktop: 80px;
+  --section-py-desktop: 120px;
   --section-py-mobile: 48px;
   --gap-component: 24px;
   --radius-card: 12px;
@@ -33,6 +33,15 @@
   --color-text: #0f172a;
   --color-text-muted: #475569;
   --color-text-subtle: #64748b;
+
+  /* Eco-tech landing theme */
+  --eco-primary: #22C55E;
+  --eco-glow: rgba(34, 197, 94, 0.4);
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+
+  /* App (auth + dashboard) dark theme */
+  --app-bg: #0B1220;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -42,9 +51,13 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   @apply antialiased;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   line-height: 1.6;
   color: var(--color-text);
   background-color: var(--color-surface);
@@ -71,6 +84,87 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .hero-bg-dot,
   .hero-bg-plus {
+    animation: none;
+  }
+}
+
+/* Eco landing: recycling watermark (90s, very subtle) */
+@keyframes eco-recycle-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.eco-bg-recycle-spin {
+  animation: eco-recycle-spin 90s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .eco-bg-recycle-spin {
+    animation: none;
+  }
+}
+
+/* Traceability network: node/line pulse */
+@keyframes network-pulse {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.7; }
+}
+.bg-network-pulse {
+  animation: network-pulse 4s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .bg-network-pulse {
+    animation: none;
+    opacity: 0.4;
+  }
+}
+
+/* How it Works: flow dot travelling along line */
+@keyframes flow-dot-travel {
+  0% { transform: translateX(-100%); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+.bg-flow-dot {
+  animation: flow-dot-travel 8s ease-in-out infinite;
+}
+@keyframes flow-dot-vertical {
+  0% { transform: translate(-50%, -100%); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translate(-50%, 100%); opacity: 0; }
+}
+.bg-flow-dot-vertical {
+  animation: flow-dot-vertical 6s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .bg-flow-dot,
+  .bg-flow-dot-vertical {
+    animation: none;
+  }
+}
+
+/* E-waste flow section: red accent underline */
+@keyframes flow-underline {
+  0%, 100% { transform: scaleX(0.6); opacity: 0.7; }
+  50% { transform: scaleX(1); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .flow-underline {
+    animation: none;
+  }
+}
+
+/* E-waste flow: horizontal light sweep (12s) */
+@keyframes flow-light-sweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+.flow-light-sweep {
+  animation: flow-light-sweep 12s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .flow-light-sweep {
     animation: none;
   }
 }
@@ -112,7 +206,78 @@ body {
     @apply mx-auto max-w-content px-4 sm:px-6 lg:px-8;
   }
   .section-block {
-    @apply py-12 sm:py-16 lg:py-20;
+    @apply py-12 sm:py-16;
+    padding-top: var(--section-py-mobile);
+    padding-bottom: var(--section-py-mobile);
+  }
+  @media (min-width: 1024px) {
+    .section-block {
+      padding-top: var(--section-py-desktop);
+      padding-bottom: var(--section-py-desktop);
+    }
+  }
+  /* Compliance / Trust section: slightly wider for premium feel */
+  .trust-section-compliance .section-inner {
+    max-width: 85rem;
+  }
+
+  /* Eco landing: layered premium glass card */
+  .glass-card {
+    position: relative;
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    transition: box-shadow 0.4s ease, border-color 0.4s ease;
+    overflow: hidden;
+  }
+  .glass-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.08) 0%, transparent 40%);
+    pointer-events: none;
+    border-radius: inherit;
+  }
+  .glass-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    pointer-events: none;
+    border-radius: 16px 16px 0 0;
+  }
+  .glass-card:hover {
+    box-shadow: 0 0 50px rgba(34, 197, 94, 0.25), 0 25px 50px -12px rgba(0,0,0,0.35);
+    border-color: rgba(255, 255, 255, 0.18);
+  }
+  /* Glass variation: hero = strong, features = medium, tech = solid, trust = light */
+  .glass-card--strong {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-color: rgba(255, 255, 255, 0.14);
+  }
+  .glass-card--medium {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+  .glass-card--solid {
+    background: rgba(15, 22, 43, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+  .glass-card--light {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-color: rgba(255, 255, 255, 0.08);
   }
 
   /* Card and image hover treatment for minimalist depth */
@@ -133,6 +298,44 @@ body {
   /* Form input base */
   .input-base {
     @apply block w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-slate-900 placeholder-slate-400 transition-colors focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand;
+  }
+
+  /* Dark glass input (auth + dashboard, do not replace .input-base) */
+  .input-glass {
+    @apply block w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-white placeholder-white/40 transition-all duration-200 focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-400/30;
+  }
+
+  /* Primary button glass style (eco glow, for dark app) */
+  .btn-glass-primary {
+    @apply inline-flex min-h-[var(--touch-min-h)] items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-eco to-emerald-600 px-5 py-2.5 text-sm font-semibold text-white shadow-[0_0_25px_rgba(34,197,94,0.25)] transition-all duration-200 hover:scale-[1.02] hover:shadow-[0_0_35px_rgba(34,197,94,0.35)] focus-visible:outline focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--app-bg)] disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98];
+  }
+
+  /* Dark glass table wrapper */
+  .table-glass {
+    @apply overflow-hidden rounded-2xl border border-white/10;
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  .table-glass table {
+    @apply min-w-full text-sm;
+  }
+  .table-glass thead {
+    @apply border-b border-white/10;
+    background: rgba(255, 255, 255, 0.03);
+  }
+  .table-glass thead th {
+    @apply px-4 py-3 text-left text-white/80 font-medium;
+  }
+  .table-glass tbody tr {
+    @apply border-b border-white/5 transition-colors duration-150;
+  }
+  .table-glass tbody tr:hover {
+    @apply bg-white/5;
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.08);
+  }
+  .table-glass tbody td {
+    @apply px-4 py-3 text-white/90;
   }
 }
 
@@ -160,5 +363,68 @@ body {
   }
   100% {
     background-position: 0% 50%;
+  }
+}
+
+/* Hero: slow moving gradient light sweep */
+@keyframes gradient-sweep {
+  0%, 100% { opacity: 0.15; transform: translateX(-20%) scale(1); }
+  50% { opacity: 0.25; transform: translateX(20%) scale(1.1); }
+}
+.hero-gradient-sweep {
+  animation: gradient-sweep 18s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-gradient-sweep {
+    animation: none;
+  }
+}
+
+/* CTA ripple effect */
+@keyframes cta-ripple {
+  to {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+.cta-ripple {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  overflow: hidden;
+}
+.cta-ripple span {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+  animation: cta-ripple 0.6s ease-out forwards;
+}
+
+/* Icon container: 48px glow + pulse on hover */
+.icon-glow-ring {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(34,197,94,0.2) 0%, rgba(34,197,94,0.08) 100%);
+  box-shadow: 0 0 24px rgba(34,197,94,0.15);
+  transition: box-shadow 0.4s ease, transform 0.4s ease;
+}
+.icon-glow-ring:hover {
+  box-shadow: 0 0 32px rgba(34,197,94,0.25);
+}
+@keyframes icon-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.95; }
+}
+.glass-card:hover .icon-glow-ring {
+  animation: icon-pulse 2s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .glass-card:hover .icon-glow-ring {
+    animation: none;
   }
 }

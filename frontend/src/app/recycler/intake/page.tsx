@@ -87,7 +87,7 @@ export default function RecyclerIntakePage() {
     return (
       <AppShell title="E-waste Console">
         <h2 className="text-lg font-semibold mb-1">Recycler intake</h2>
-        <p className="text-sm text-slate-600">Loading options…</p>
+        <p className="text-sm text-white/70">Loading options…</p>
       </AppShell>
     );
   }
@@ -104,7 +104,7 @@ export default function RecyclerIntakePage() {
           <label className="block text-sm font-medium text-slate-700 mb-1">Lot *</label>
           <select
             required
-            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 focus:border-brand focus:ring-1 focus:ring-brand min-h-[44px]"
+            className="input-glass w-full min-h-[44px]"
             value={form.lotId}
             onChange={(e) => setForm((f) => ({ ...f, lotId: e.target.value }))}
           >
@@ -118,7 +118,7 @@ export default function RecyclerIntakePage() {
           <label className="block text-sm font-medium text-slate-700 mb-1">Recycler *</label>
           <select
             required
-            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 focus:border-brand focus:ring-1 focus:ring-brand min-h-[44px]"
+            className="input-glass w-full min-h-[44px]"
             value={form.recyclerId}
             onChange={(e) => setForm((f) => ({ ...f, recyclerId: e.target.value }))}
           >
@@ -133,7 +133,7 @@ export default function RecyclerIntakePage() {
           <input
             required
             type="text"
-            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 focus:border-brand focus:ring-1 focus:ring-brand min-h-[44px]"
+            className="input-glass w-full min-h-[44px]"
             placeholder="e.g. 120.000"
             value={form.receivedWeightKg}
             onChange={(e) => setForm((f) => ({ ...f, receivedWeightKg: e.target.value }))}
@@ -143,7 +143,7 @@ export default function RecyclerIntakePage() {
           <label className="block text-sm font-medium text-slate-700 mb-1">Received time *</label>
           <input
             type="datetime-local"
-            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 focus:border-brand focus:ring-1 focus:ring-brand min-h-[44px]"
+            className="input-glass w-full min-h-[44px]"
             value={form.receivedTime.slice(0, 16)}
             onChange={(e) => setForm((f) => ({ ...f, receivedTime: e.target.value ? `${e.target.value}:00.000` : new Date().toISOString() }))}
           />
@@ -151,7 +151,7 @@ export default function RecyclerIntakePage() {
         <div>
           <label className="block text-sm font-medium text-slate-700 mb-1">Variance reason *</label>
           <select
-            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 focus:border-brand focus:ring-1 focus:ring-brand min-h-[44px]"
+            className="input-glass w-full min-h-[44px]"
             value={form.varianceReason}
             onChange={(e) => setForm((f) => ({ ...f, varianceReason: e.target.value as (typeof VARIANCE_REASONS)[number] }))}
           >
@@ -164,7 +164,7 @@ export default function RecyclerIntakePage() {
           <label className="block text-sm font-medium text-slate-700 mb-1">Confirmed by (user) *</label>
           <select
             required
-            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 focus:border-brand focus:ring-1 focus:ring-brand min-h-[44px]"
+            className="input-glass w-full min-h-[44px]"
             value={form.confirmedByUserId}
             onChange={(e) => setForm((f) => ({ ...f, confirmedByUserId: e.target.value }))}
           >
@@ -177,7 +177,7 @@ export default function RecyclerIntakePage() {
         <div>
           <label className="block text-sm font-medium text-slate-700 mb-1">Assay report URL (optional)</label>
           <input
-            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 focus:border-brand focus:ring-1 focus:ring-brand"
+            className="input-glass w-full"
             value={form.assayReportUrl}
             onChange={(e) => setForm((f) => ({ ...f, assayReportUrl: e.target.value }))}
           />
@@ -187,7 +187,7 @@ export default function RecyclerIntakePage() {
       <div className="mt-6">
         <button
           onClick={submit}
-          className="min-h-[44px] rounded-lg bg-brand px-4 py-2 text-sm font-medium text-white hover:bg-brand-light"
+          className="btn-glass-primary min-h-[44px] px-4 py-2 text-sm"
         >
           Confirm intake
         </button>

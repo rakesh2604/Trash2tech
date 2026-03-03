@@ -89,25 +89,25 @@ export default function BrandEprExportPage() {
   if (loading) {
     return (
       <AppShell title="E-waste Console">
-        <h2 className="text-xl font-bold tracking-tight text-slate-900">EPR CSV export</h2>
-        <p className="mt-1 text-slate-600">Loading brands…</p>
+        <h2 className="text-xl font-bold tracking-tight text-white">EPR CSV export</h2>
+        <p className="mt-1 text-white/70">Loading brands…</p>
       </AppShell>
     );
   }
 
   return (
     <AppShell title="E-waste Console">
-      <h2 className="text-xl font-bold tracking-tight text-slate-900">EPR CSV export</h2>
-      <p className="mt-1 text-slate-600 mb-6">
+      <h2 className="text-xl font-bold tracking-tight text-white">EPR CSV export</h2>
+      <p className="mt-1 text-white/70 mb-6">
         Compliance-ready export for brand reporting periods (PO: CSV).
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-xl">
         <div>
-          <label htmlFor="epr-brand" className="block text-sm font-medium text-slate-700 mb-1">Brand *</label>
+          <label htmlFor="epr-brand" className="block text-sm font-medium text-white/80 mb-1">Brand *</label>
           <select
             id="epr-brand"
-            className="input-base"
+            className="input-glass"
             value={brandId}
             onChange={(e) => setBrandId(e.target.value)}
           >
@@ -118,10 +118,10 @@ export default function BrandEprExportPage() {
           </select>
         </div>
         <div>
-          <label htmlFor="epr-period" className="block text-sm font-medium text-slate-700 mb-1">Reporting period *</label>
+          <label htmlFor="epr-period" className="block text-sm font-medium text-white/80 mb-1">Reporting period *</label>
           <select
             id="epr-period"
-            className="input-base"
+            className="input-glass"
             value={reportingPeriod}
             onChange={(e) => setReportingPeriod(e.target.value)}
           >
@@ -137,7 +137,7 @@ export default function BrandEprExportPage() {
           type="button"
           onClick={run}
           disabled={exporting || !brandId.trim() || !reportingPeriod.trim()}
-          className="btn-primary disabled:opacity-50"
+          className="btn-glass-primary disabled:opacity-50"
         >
           {exporting ? 'Exporting…' : 'Export CSV'}
         </button>
@@ -149,19 +149,19 @@ export default function BrandEprExportPage() {
         </div>
       ) : null}
       {csv ? (
-        <div className="mt-6 rounded-xl border border-slate-200 bg-slate-50/50 p-4">
+        <div className="mt-6 rounded-2xl glass-card p-4">
           <div className="flex flex-wrap items-center justify-between gap-3 mb-2">
-            <span className="text-sm font-medium text-slate-700">CSV output</span>
+            <span className="text-sm font-medium text-white/80">CSV output</span>
             <button
               type="button"
               onClick={downloadCsv}
-              className="btn-primary text-sm"
+              className="btn-glass-primary text-sm"
             >
               Download CSV file
             </button>
           </div>
           <textarea
-            className="w-full h-48 rounded-lg border border-slate-200 bg-white px-3 py-2 text-slate-900 font-mono text-xs"
+            className="input-glass w-full h-48 font-mono text-xs"
             value={csv}
             readOnly
             aria-label="Exported CSV content"

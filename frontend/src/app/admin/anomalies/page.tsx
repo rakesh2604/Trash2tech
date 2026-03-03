@@ -35,12 +35,12 @@ export default async function AdminAnomaliesPage(props: { searchParams?: SearchP
 
   return (
     <AppShell title="E-waste Console">
-      <h2 className="text-xl font-bold tracking-tight text-slate-900">Anomalies</h2>
-      <p className="text-sm text-slate-600 mt-1 mb-4">
+      <h2 className="text-xl font-bold tracking-tight text-white">Anomalies</h2>
+      <p className="text-sm text-white/70 mt-1 mb-4">
         Weight variance and other alerts. Filter by type or severity.
       </p>
       {listError && (
-        <div className="mb-4 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800" role="alert">
+        <div className="mb-4 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300" role="alert">
           {listError}
         </div>
       )}
@@ -52,10 +52,10 @@ export default async function AdminAnomaliesPage(props: { searchParams?: SearchP
           description="Anomalies are created when recycler intake weight differs from hub weight beyond the configured threshold."
         />
       ) : (
-        <div className="overflow-x-auto rounded-xl border border-slate-200">
-          <table className="min-w-full text-sm">
-            <thead className="bg-slate-50">
-              <tr className="text-left text-slate-700">
+        <div className="table-glass overflow-x-auto">
+          <table>
+            <thead>
+              <tr>
                 <th className="p-3">Type</th>
                 <th className="p-3">Severity</th>
                 <th className="p-3">Entity</th>
@@ -65,12 +65,12 @@ export default async function AdminAnomaliesPage(props: { searchParams?: SearchP
             </thead>
             <tbody>
               {anomalies.map((a: { id: string; type: string; severity: string; entityType: string; entityId: string; createdAt: string; payloadJson?: Record<string, unknown> }) => (
-                <tr key={a.id} className="border-t border-slate-200">
-                  <td className="p-3 font-medium text-slate-900">{a.type}</td>
-                  <td className="p-3 text-slate-600">{a.severity}</td>
-                  <td className="p-3 text-slate-600">{a.entityType} {a.entityId?.slice(0, 8)}…</td>
-                  <td className="p-3 text-slate-500">{new Date(a.createdAt).toLocaleString()}</td>
-                  <td className="p-3 text-slate-500 max-w-xs truncate">
+                <tr key={a.id}>
+                  <td className="p-3 font-medium">{a.type}</td>
+                  <td className="p-3">{a.severity}</td>
+                  <td className="p-3">{a.entityType} {a.entityId?.slice(0, 8)}…</td>
+                  <td className="p-3 text-white/70">{new Date(a.createdAt).toLocaleString()}</td>
+                  <td className="p-3 text-white/70 max-w-xs truncate">
                     {a.payloadJson ? JSON.stringify(a.payloadJson) : '—'}
                   </td>
                 </tr>

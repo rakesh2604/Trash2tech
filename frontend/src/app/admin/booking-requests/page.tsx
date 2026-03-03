@@ -35,12 +35,12 @@ export default async function AdminBookingRequestsPage(props: { searchParams?: S
 
   return (
     <AppShell title="E-waste Console">
-      <h2 className="text-xl font-bold tracking-tight text-slate-900">Booking requests</h2>
-      <p className="text-sm text-slate-600 mt-1 mb-4">
+      <h2 className="text-xl font-bold tracking-tight text-white">Booking requests</h2>
+      <p className="text-sm text-white/70 mt-1 mb-4">
         Leads captured from WhatsApp / IVR before conversion to compliant pickups. Filter by channel or status.
       </p>
       {listError && (
-        <div className="mb-4 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800" role="alert">
+        <div className="mb-4 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300" role="alert">
           {listError}
         </div>
       )}
@@ -52,10 +52,10 @@ export default async function AdminBookingRequestsPage(props: { searchParams?: S
           description="Requests will appear when citizens use WhatsApp or IVR (missed call) to request a pickup."
         />
       ) : (
-        <div className="overflow-x-auto rounded-xl border border-slate-200">
-          <table className="min-w-full text-sm">
-            <thead className="bg-slate-50">
-              <tr className="text-left text-slate-700">
+        <div className="table-glass overflow-x-auto">
+          <table>
+            <thead>
+              <tr>
                 <th className="p-3">Channel</th>
                 <th className="p-3">Phone</th>
                 <th className="p-3">Pincode</th>
@@ -66,13 +66,13 @@ export default async function AdminBookingRequestsPage(props: { searchParams?: S
             </thead>
             <tbody>
               {requests.map((r: { id: string; channel: string; phone: string; pincode?: string; status: string; pickupId?: string; createdAt: string }) => (
-                <tr key={r.id} className="border-t border-slate-200">
-                  <td className="p-3 text-slate-600">{r.channel}</td>
-                  <td className="p-3 text-slate-600">{r.phone}</td>
-                  <td className="p-3 text-slate-600">{r.pincode ?? '-'}</td>
-                  <td className="p-3 text-slate-600">{r.status}</td>
-                  <td className="p-3 text-slate-600">{r.pickupId ?? '-'}</td>
-                  <td className="p-3 text-slate-500">{new Date(r.createdAt).toLocaleString()}</td>
+                <tr key={r.id}>
+                  <td className="p-3">{r.channel}</td>
+                  <td className="p-3">{r.phone}</td>
+                  <td className="p-3">{r.pincode ?? '-'}</td>
+                  <td className="p-3">{r.status}</td>
+                  <td className="p-3">{r.pickupId ?? '-'}</td>
+                  <td className="p-3 text-white/70">{new Date(r.createdAt).toLocaleString()}</td>
                 </tr>
               ))}
             </tbody>
